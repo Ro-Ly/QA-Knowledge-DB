@@ -1,53 +1,95 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Typography, Stack, Chip } from '@mui/material';
+import React, {
+    useState,
+    useEffect,
+    useMemo,
+    useDeferredValue,
+} from 'react';
+import { Box, Typography, Stack, Chip, CircularProgress } from '@mui/material';
 import SearchBar from './components/SearchBar';
 import TagFilter from './components/TagFilter';
 import CategoryAccordion from './components/CategoryAccordion';
 import { getAllQuestions } from './data';
 
+function useDebouncedValue(value, delay = 180) {
+    const [debounced, setDebounced] = useState(value);
+
+    useEffect(() => {
+        const id = setTimeout(() => setDebounced(value), delay);
+        return () => clearTimeout(id);
+    }, [value, delay]);
+
+    return debounced;
+}
+
 function App() {
     const [questions, setQuestions] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
-    const [allTags, setAllTags] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const debouncedSearch = useDebouncedValue(searchTerm, 180);
+    const deferredSearch = useDeferredValue(debouncedSearch);
 
     useEffect(() => {
         const loadQuestions = async () => {
+            setIsLoading(true);
+
             const data = await getAllQuestions();
-            setQuestions(data);
-            setAllTags([...new Set(data.flatMap((q) => q.tags || []))]);
+
+            // Precompute lowercase searchable text ONCE
+            const prepared = data.map((q, index) => ({
+                ...q,
+                id: q.id ?? `${q.category || 'uncategorized'}-${q.subcategory || 'general'}-${index}`,
+                _searchText: `${q.title || ''} ${q.answer || ''} ${(q.tags || []).join(' ')}`
+                    .toLowerCase(),
+            }));
+
+            setQuestions(prepared);
+            setIsLoading(false);
         };
 
         loadQuestions();
     }, []);
 
-    const filteredQuestions = questions.filter((question) => {
-        const title = question.title || '';
-        const answer = question.answer || '';
+    const allTags = useMemo(() => {
+        return [...new Set(questions.flatMap((q) => q.tags || []))].sort((a, b) =>
+            a.localeCompare(b)
+        );
+    }, [questions]);
 
-        const matchesSearch = searchTerm
-            ? title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            answer.toLowerCase().includes(searchTerm.toLowerCase())
-            : true;
+    const normalizedSearch = deferredSearch.trim().toLowerCase();
 
-        const matchesTags =
-            selectedTags.length === 0
-                ? true
-                : selectedTags.every((tag) => (question.tags || []).includes(tag));
+    const filteredQuestions = useMemo(() => {
+        return questions.filter((question) => {
+            const matchesSearch = normalizedSearch
+                ? question._searchText.includes(normalizedSearch)
+                : true;
 
-        return matchesSearch && matchesTags;
-    });
+            const matchesTags =
+                selectedTags.length === 0
+                    ? true
+                    : selectedTags.every((tag) => (question.tags || []).includes(tag));
 
-    const groupedQuestions = filteredQuestions.reduce((acc, question) => {
-        const category = question.category || 'Uncategorized';
-        const subcategory = question.subcategory || 'General';
+            return matchesSearch && matchesTags;
+        });
+    }, [questions, normalizedSearch, selectedTags]);
 
-        if (!acc[category]) acc[category] = {};
-        if (!acc[category][subcategory]) acc[category][subcategory] = [];
+    const groupedQuestions = useMemo(() => {
+        return filteredQuestions.reduce((acc, question) => {
+            const category = question.category || 'Uncategorized';
+            const subcategory = question.subcategory || 'General';
 
-        acc[category][subcategory].push(question);
-        return acc;
-    }, {});
+            if (!acc[category]) acc[category] = {};
+            if (!acc[category][subcategory]) acc[category][subcategory] = [];
+
+            acc[category][subcategory].push(question);
+            return acc;
+        }, {});
+    }, [filteredQuestions]);
+
+    const groupedEntries = useMemo(() => {
+        return Object.entries(groupedQuestions);
+    }, [groupedQuestions]);
 
     return (
         <Box
@@ -168,7 +210,7 @@ function App() {
 
                 <Stack direction="row" spacing={1.2} useFlexGap flexWrap="wrap">
                     <Chip label={`${questions.length} questions`} />
-                    <Chip label={`${Object.keys(groupedQuestions).length} categories`} />
+                    <Chip label={`${groupedEntries.length} categories`} />
                     <Chip label={`${allTags.length} tags`} />
                 </Stack>
             </Box>
@@ -202,7 +244,27 @@ function App() {
             </Box>
 
             {/* Results */}
-            {Object.keys(groupedQuestions).length === 0 ? (
+            {isLoading ? (
+                <Box
+                    sx={{
+                        position: 'relative',
+                        zIndex: 1,
+                        p: 4,
+                        borderRadius: 3,
+                        border: '1px solid rgba(255,255,255,0.07)',
+                        background: 'rgba(10, 14, 28, 0.68)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 2,
+                    }}
+                >
+                    <CircularProgress size={24} />
+                    <Typography variant="body1" color="text.secondary">
+                        Loading knowledge base...
+                    </Typography>
+                </Box>
+            ) : groupedEntries.length === 0 ? (
                 <Box
                     sx={{
                         position: 'relative',
@@ -218,7 +280,7 @@ function App() {
                     </Typography>
                 </Box>
             ) : (
-                Object.entries(groupedQuestions).map(([category, subcategories]) => (
+                groupedEntries.map(([category, subcategories]) => (
                     <CategoryAccordion
                         key={category}
                         category={category}

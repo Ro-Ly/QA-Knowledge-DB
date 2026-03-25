@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import {
     Accordion,
     AccordionSummary,
@@ -12,11 +12,18 @@ import QuestionCard from './QuestionCard';
 
 const CategoryAccordion = ({ category, subcategories }) => {
     const [expanded, setExpanded] = useState(false);
+    const [expandedSub, setExpandedSub] = useState(null);
 
-    const totalQuestions = Object.values(subcategories).reduce(
-        (sum, questions) => sum + questions.length,
-        0
-    );
+    const totalQuestions = useMemo(() => {
+        return Object.values(subcategories).reduce(
+            (sum, questions) => sum + questions.length,
+            0
+        );
+    }, [subcategories]);
+
+    const subcategoryEntries = useMemo(() => {
+        return Object.entries(subcategories);
+    }, [subcategories]);
 
     return (
         <Accordion
@@ -72,61 +79,80 @@ const CategoryAccordion = ({ category, subcategories }) => {
             </AccordionSummary>
 
             <AccordionDetails sx={{ pt: 0.5 }}>
-                {Object.entries(subcategories).map(([subcategory, questions]) => (
-                    <Accordion
-                        key={subcategory}
-                        sx={{
-                            mb: 1.75,
-                            borderRadius: '12px !important',
-                            background:
-                                'linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.015))',
-                            border: '1px solid rgba(255,255,255,0.05)',
-                            boxShadow: 'none',
-                            overflow: 'hidden',
-                        }}
-                    >
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            sx={{
-                                minHeight: 58,
-                            }}
-                        >
-                            <Box
+                {/* 🚀 Render subcategories ONLY when category expanded */}
+                {expanded &&
+                    subcategoryEntries.map(([subcategory, questions]) => {
+                        const isSubExpanded = expandedSub === subcategory;
+
+                        return (
+                            <Accordion
+                                key={subcategory}
+                                expanded={isSubExpanded}
+                                onChange={() =>
+                                    setExpandedSub(isSubExpanded ? null : subcategory)
+                                }
                                 sx={{
-                                    width: '100%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'space-between',
-                                    gap: 2,
-                                    pr: 1,
+                                    mb: 1.75,
+                                    borderRadius: '12px !important',
+                                    background:
+                                        'linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.015))',
+                                    border: '1px solid rgba(255,255,255,0.05)',
+                                    boxShadow: 'none',
+                                    overflow: 'hidden',
                                 }}
                             >
-                                <Typography
-                                    variant="h6"
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
                                     sx={{
-                                        color: 'text.primary',
-                                        opacity: 0.95,
+                                        minHeight: 58,
                                     }}
                                 >
-                                    {subcategory}
-                                </Typography>
+                                    <Box
+                                        sx={{
+                                            width: '100%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'space-between',
+                                            gap: 2,
+                                            pr: 1,
+                                        }}
+                                    >
+                                        <Typography
+                                            variant="h6"
+                                            sx={{
+                                                color: 'text.primary',
+                                                opacity: 0.95,
+                                            }}
+                                        >
+                                            {subcategory}
+                                        </Typography>
 
-                                <Chip label={`${questions.length} questions`} size="small" />
-                            </Box>
-                        </AccordionSummary>
+                                        <Chip
+                                            label={`${questions.length} questions`}
+                                            size="small"
+                                        />
+                                    </Box>
+                                </AccordionSummary>
 
-                        <AccordionDetails sx={{ pt: 0.5 }}>
-                            <Box sx={{ display: 'grid', gap: 1.1 }}>
-                                {questions.map((question) => (
-                                    <QuestionCard key={question.id} question={question} />
-                                ))}
-                            </Box>
-                        </AccordionDetails>
-                    </Accordion>
-                ))}
+                                <AccordionDetails sx={{ pt: 0.5 }}>
+                                    {/* 🚀 Render questions ONLY when subcategory expanded */}
+                                    {isSubExpanded && (
+                                        <Box sx={{ display: 'grid', gap: 1.1 }}>
+                                            {questions.map((question) => (
+                                                <QuestionCard
+                                                    key={question.id}
+                                                    question={question}
+                                                />
+                                            ))}
+                                        </Box>
+                                    )}
+                                </AccordionDetails>
+                            </Accordion>
+                        );
+                    })}
             </AccordionDetails>
         </Accordion>
     );
 };
 
-export default CategoryAccordion;
+export default memo(CategoryAccordion);
