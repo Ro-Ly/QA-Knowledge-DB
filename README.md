@@ -4,7 +4,6 @@
 2. Add JSON files with this structure:
 ```json
 {
-  "id": 1,
   "title": "Question title",
   "tags": ["tag1", "tag2"],
   "answer": "Answer with ```code blocks```",
