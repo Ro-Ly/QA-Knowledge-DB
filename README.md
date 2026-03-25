@@ -18,6 +18,5 @@ The app is automatically deployed to GitHub Pages using the workflow in `.github
 
 ## Notes
 
-- The current implementation uses mock data in `src/data/index.js`
-- For production use, replace the mock data with dynamic loading using `import.meta.glob` in Vite
-- Code blocks in answers use triple-backtick syntax with language specifiers
+- The current implementation uses the all-questions.json flat JSON,
+which should be not modified as it's Base package of questions
