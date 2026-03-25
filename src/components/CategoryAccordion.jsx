@@ -36,7 +36,7 @@ const CategoryAccordion = ({ category, subcategories }) => {
                     }}
                 >
                     <Typography variant="h5">{category}</Typography>
-                    <Chip label={`📘 ${totalQuestions}`} size="small" />
+                    <Chip label={`${totalQuestions}`} size="small" />
                 </Box>
             </AccordionSummary>
 
@@ -46,8 +46,8 @@ const CategoryAccordion = ({ category, subcategories }) => {
                         key={subcategory}
                         sx={{
                             mb: 2,
-                            backgroundColor: 'rgba(255,255,255,0.03)',
-                            border: '1px solid rgba(255,255,255,0.06)',
+                            backgroundColor: 'rgba(255,255,255,0.025)',
+                            border: '1px solid rgba(255,255,255,0.05)',
                             boxShadow: 'none',
                         }}
                     >
@@ -62,9 +62,7 @@ const CategoryAccordion = ({ category, subcategories }) => {
                                     pr: 1,
                                 }}
                             >
-                                <Typography variant="h6">
-                                    ✨ {subcategory}
-                                </Typography>
+                                <Typography variant="h6">{subcategory}</Typography>
                                 <Chip label={`${questions.length} questions`} size="small" />
                             </Box>
                         </AccordionSummary>

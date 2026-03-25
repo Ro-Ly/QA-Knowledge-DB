@@ -139,7 +139,7 @@ const QuestionCard = ({ question }) => {
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-                    💡 {question.title}
+                    {question.title}
                 </Typography>
             </AccordionSummary>
 

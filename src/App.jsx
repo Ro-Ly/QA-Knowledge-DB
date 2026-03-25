@@ -67,7 +67,7 @@ function App() {
                     width: 220,
                     height: 220,
                     borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(155,140,255,0.22), transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(155,140,255,0.14), transparent 70%)',
                     filter: 'blur(18px)',
                     pointerEvents: 'none',
                 }}
@@ -80,7 +80,7 @@ function App() {
                     width: 260,
                     height: 260,
                     borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(53,224,255,0.14), transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(53,224,255,0.10), transparent 70%)',
                     filter: 'blur(26px)',
                     pointerEvents: 'none',
                 }}
@@ -91,12 +91,12 @@ function App() {
                     position: 'relative',
                     mb: 5,
                     p: { xs: 3, md: 5 },
-                    borderRadius: 6,
-                    border: '1px solid rgba(255,255,255,0.09)',
+                    borderRadius: 8,
+                    border: '1px solid rgba(255,255,255,0.08)',
                     background:
-                        'linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))',
+                        'linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))',
                     backdropFilter: 'blur(18px)',
-                    boxShadow: '0 25px 80px rgba(0,0,0,0.35)',
+                    boxShadow: '0 20px 60px rgba(0,0,0,0.36)',
                     overflow: 'hidden',
                 }}
             >
@@ -105,15 +105,15 @@ function App() {
                         position: 'absolute',
                         inset: 0,
                         background:
-                            'radial-gradient(circle at 15% 20%, rgba(155,140,255,0.15), transparent 22%), radial-gradient(circle at 88% 22%, rgba(53,224,255,0.12), transparent 22%)',
+                            'radial-gradient(circle at 15% 20%, rgba(155,140,255,0.10), transparent 22%), radial-gradient(circle at 88% 22%, rgba(53,224,255,0.08), transparent 22%)',
                         pointerEvents: 'none',
                     }}
                 />
 
                 <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ mb: 2 }}>
-                    <Chip label="🌙 Dark mode by default" />
-                    <Chip label="⚡ Fast search" />
-                    <Chip label="🧠 QA knowledge base" />
+                    <Chip label="Dark mode" />
+                    <Chip label="Fast search" />
+                    <Chip label="QA knowledge base" />
                 </Stack>
 
                 <Typography
@@ -125,9 +125,6 @@ function App() {
                     }}
                 >
                     QA Interview Knowledge Base
-                    <Box component="span" sx={{ color: 'secondary.main' }}>
-                        {' '}✨
-                    </Box>
                 </Typography>
 
                 <Typography
@@ -145,9 +142,9 @@ function App() {
                 </Typography>
 
                 <Stack direction="row" spacing={1.2} useFlexGap flexWrap="wrap">
-                    <Chip label={`📚 ${questions.length} questions`} />
-                    <Chip label={`🗂️ ${Object.keys(groupedQuestions).length} categories`} />
-                    <Chip label={`🏷️ ${allTags.length} tags`} />
+                    <Chip label={`${questions.length} questions`} />
+                    <Chip label={`${Object.keys(groupedQuestions).length} categories`} />
+                    <Chip label={`${allTags.length} tags`} />
                 </Stack>
             </Box>
 
@@ -155,15 +152,15 @@ function App() {
                 sx={{
                     mb: 4,
                     p: 3,
-                    borderRadius: 5,
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    background: 'rgba(14, 19, 40, 0.66)',
+                    borderRadius: 7,
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    background: 'rgba(10, 14, 28, 0.74)',
                     backdropFilter: 'blur(16px)',
-                    boxShadow: '0 18px 50px rgba(0,0,0,0.28)',
+                    boxShadow: '0 16px 45px rgba(0,0,0,0.30)',
                 }}
             >
                 <Typography variant="h6" sx={{ mb: 2 }}>
-                    🔎 Explore the knowledge base
+                    Explore the knowledge base
                 </Typography>
 
                 <SearchBar value={searchTerm} onChange={setSearchTerm} />
@@ -181,11 +178,11 @@ function App() {
                         p: 3,
                         borderRadius: 4,
                         border: '1px solid rgba(255,255,255,0.08)',
-                        background: 'rgba(14, 19, 40, 0.6)',
+                        background: 'rgba(10, 14, 28, 0.68)',
                     }}
                 >
                     <Typography variant="body1" color="text.secondary">
-                        😶 No questions found.
+                        No questions found.
                     </Typography>
                 </Box>
             ) : (

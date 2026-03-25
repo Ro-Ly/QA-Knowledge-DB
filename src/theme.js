@@ -10,8 +10,8 @@ const theme = createTheme({
             main: '#35E0FF',
         },
         background: {
-            default: '#050816',
-            paper: 'rgba(14, 19, 40, 0.82)',
+            default: '#02040D',
+            paper: 'rgba(10, 14, 28, 0.88)',
         },
         text: {
             primary: '#F5F7FF',
@@ -20,7 +20,7 @@ const theme = createTheme({
         divider: 'rgba(255,255,255,0.08)',
     },
     shape: {
-        borderRadius: 20,
+        borderRadius: 14,
     },
     typography: {
         fontFamily: '"Space Grotesk", "Inter", "Segoe UI", sans-serif',
@@ -58,10 +58,10 @@ const theme = createTheme({
                     margin: 0,
                     minHeight: '100vh',
                     background: `
-                        radial-gradient(circle at 12% 12%, rgba(120, 86, 255, 0.22), transparent 24%),
-                        radial-gradient(circle at 88% 18%, rgba(0, 224, 255, 0.16), transparent 22%),
-                        radial-gradient(circle at 52% 78%, rgba(255, 77, 166, 0.12), transparent 26%),
-                        linear-gradient(180deg, #040612 0%, #050816 45%, #070B1B 100%)
+                        radial-gradient(circle at 10% 10%, rgba(120, 86, 255, 0.12), transparent 20%),
+                        radial-gradient(circle at 90% 20%, rgba(0, 224, 255, 0.08), transparent 20%),
+                        radial-gradient(circle at 50% 80%, rgba(255, 77, 166, 0.06), transparent 22%),
+                        linear-gradient(180deg, #01030A 0%, #02040D 40%, #040813 100%)
                     `,
                     color: '#F5F7FF',
                 },
@@ -80,12 +80,12 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     backgroundImage: 'none',
-                    backgroundColor: 'rgba(14, 19, 40, 0.72)',
+                    backgroundColor: 'rgba(10, 14, 28, 0.82)',
                     backdropFilter: 'blur(14px)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    borderRadius: '20px !important',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    borderRadius: '14px !important',
                     overflow: 'hidden',
-                    boxShadow: '0 18px 60px rgba(0, 0, 0, 0.28)',
+                    boxShadow: '0 14px 40px rgba(0, 0, 0, 0.32)',
                     '&:before': {
                         display: 'none',
                     },
@@ -95,10 +95,10 @@ const theme = createTheme({
         MuiAccordionSummary: {
             styleOverrides: {
                 root: {
-                    minHeight: 68,
+                    minHeight: 64,
                 },
                 content: {
-                    margin: '16px 0',
+                    margin: '14px 0',
                 },
             },
         },
@@ -106,9 +106,10 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 999,
-                    border: '1px solid rgba(255,255,255,0.12)',
-                    background: 'linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))',
+                    border: '1px solid rgba(255,255,255,0.10)',
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025))',
                     color: '#F5F7FF',
+                    fontWeight: 500,
                 },
             },
         },
@@ -116,8 +117,8 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     '& .MuiOutlinedInput-root': {
-                        borderRadius: 16,
-                        backgroundColor: 'rgba(255,255,255,0.04)',
+                        borderRadius: 12,
+                        backgroundColor: 'rgba(255,255,255,0.035)',
                         backdropFilter: 'blur(10px)',
                     },
                 },
