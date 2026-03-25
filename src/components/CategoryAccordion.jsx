@@ -53,7 +53,7 @@ function App() {
     return (
         <Box sx={{ maxWidth: 1200, mx: 'auto', p: 3 }}>
             <Typography variant="h3" gutterBottom>
-                Wiki Knowledge Base
+                QA Knowledge Base
             </Typography>
 
             <Box sx={{ mb: 3 }}>
