@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React from 'react';
+import { Card, CardContent, Typography, Chip, Stack } from '@mui/material';
 
-const CategoryAccordion = ({ category, questions }) => {
-    const [expanded, setExpanded] = useState(false);
-
+const QuestionCard = ({ question }) => {
     return (
-        <Accordion
-            expanded={expanded}
-            onChange={() => setExpanded(!expanded)}
-            sx={{ mb: 2, boxShadow: 1 }}
-        >
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="h5">{category}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                {questions.map(question => (
-                    <QuestionCard key={question.id} question={question} />
-                ))}
-            </AccordionDetails>
-        </Accordion>
+        <Card sx={{ mb: 2 }}>
+            <CardContent>
+                <Typography variant="h6" gutterBottom>
+                    {question.title}
+                </Typography>
+
+                <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap' }}>
+                    {question.tags?.map(tag => (
+                        <Chip key={tag} label={tag} size="small" />
+                    ))}
+                </Stack>
+
+                <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
+                    {question.answer}
+                </Typography>
+            </CardContent>
+        </Card>
     );
 };
 
-export default CategoryAccordion;
+export default QuestionCard;
