@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Flat Base items DB is added">
-      <change beforePath="$PROJECT_DIR$/src/data/all-questions.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/all-questions.json" afterDir="false" />
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Base questions code blocks fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +94,7 @@
       <workItem from="1774453411780" duration="282000" />
       <workItem from="1774453707335" duration="2586000" />
       <workItem from="1774457084340" duration="1557000" />
-      <workItem from="1774462043878" duration="8779000" />
+      <workItem from="1774462043878" duration="10348000" />
     </task>
     <task id="LOCAL-00001" summary="Initial main setup">
       <option name="closed" value="true" />
@@ -245,7 +248,23 @@
       <option name="project" value="LOCAL" />
       <updated>1774471438751</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Base questions set is added">
+      <option name="closed" value="true" />
+      <created>1774473878565</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1774473878565</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Base questions code blocks fix">
+      <option name="closed" value="true" />
+      <created>1774474950572</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1774474950572</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +289,9 @@
     <MESSAGE value="Questions are collapsable now" />
     <MESSAGE value="Styles are added" />
     <MESSAGE value="Flat Base items DB is added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Flat Base items DB is added" />
+    <MESSAGE value="Base questions set is added" />
+    <MESSAGE value="Base questions code blocks fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Base questions code blocks fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
