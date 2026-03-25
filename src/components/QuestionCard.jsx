@@ -155,10 +155,7 @@ const QuestionCard = ({ question }) => {
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography
                     variant="subtitle1"
-                    sx={{
-                        fontWeight: 700,
-                        color: 'text.primary',
-                    }}
+                    color="text.primary"
                 >
                     {question.title}
                 </Typography>

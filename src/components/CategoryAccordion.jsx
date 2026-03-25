@@ -4,155 +4,311 @@ import {
     AccordionSummary,
     AccordionDetails,
     Typography,
-    Box,
-    Chip
+    Chip,
+    Stack,
+    Box
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import QuestionCard from './QuestionCard';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-const CategoryAccordion = ({ category, subcategories }) => {
+function detectCodeLanguage(category, code) {
+    const c = (category || '').toLowerCase();
+    const codeTrim = (code || '').trim();
+
+    if (c.includes('sql')) return 'sql';
+    if (c.includes('java')) return 'java';
+    if (c.includes('git')) return 'bash';
+    if (c.includes('http')) return 'http';
+    if (codeTrim.startsWith('{') || codeTrim.startsWith('[')) return 'json';
+
+    if (codeTrim.includes('System.out.println') || codeTrim.includes('class ')) return 'java';
+
+    if (
+        codeTrim.includes('SELECT ') ||
+        codeTrim.includes('INSERT ') ||
+        codeTrim.includes('UPDATE ') ||
+        codeTrim.includes('DELETE ') ||
+        codeTrim.includes('CREATE VIEW')
+    ) {
+        return 'sql';
+    }
+
+    if (codeTrim.includes('curl ') || codeTrim.includes('HTTP/1.1')) return 'http';
+
+    return '';
+}
+
+function looksLikeCodeLine(line = '') {
+    const trimmed = line.trim();
+
+    if (!trimmed) return false;
+
+    return (
+        trimmed.endsWith('{') ||
+        trimmed === '}' ||
+        trimmed === '};' ||
+        trimmed.includes('();') ||
+        trimmed.includes('System.out.') ||
+        trimmed.includes('console.log') ||
+        trimmed.includes('SELECT ') ||
+        trimmed.includes('INSERT ') ||
+        trimmed.includes('UPDATE ') ||
+        trimmed.includes('DELETE ') ||
+        trimmed.includes('CREATE ') ||
+        trimmed.includes('FROM ') ||
+        trimmed.includes('WHERE ') ||
+        trimmed.includes('class ') ||
+        trimmed.includes('public ') ||
+        trimmed.includes('private ') ||
+        trimmed.includes('protected ') ||
+        trimmed.includes('void ') ||
+        trimmed.includes('return ') ||
+        trimmed.includes('extends ') ||
+        trimmed.includes('implements ') ||
+        trimmed.includes('super(') ||
+        trimmed.includes('this.') ||
+        /^<\/?[a-z][\s\S]*>/i.test(trimmed) ||
+        /^[\w$]+\s*\(.*\)\s*\{?$/.test(trimmed)
+    );
+}
+
+function normalizeAnswerToMarkdown(answer = '', category = '') {
+    if (!answer) return '';
+
+    if (answer.includes('```')) {
+        return answer;
+    }
+
+    const markerMatch = answer.match(/([\s\S]*?)(\n(?:Код|Пример):\n)([\s\S]*)/i);
+
+    if (markerMatch) {
+        const textPart = markerMatch[1].trim();
+        const marker = markerMatch[2].trim();
+        const codePart = markerMatch[3].trim();
+        const lang = detectCodeLanguage(category, codePart);
+
+        return `${textPart}\n\n${marker}\n\n\`\`\`${lang}\n${codePart}\n\`\`\``;
+    }
+
+    const lines = answer.split('\n');
+    let firstCodeIndex = -1;
+
+    for (let i = 0; i < lines.length; i++) {
+        const current = lines[i];
+        const next = lines[i + 1] || '';
+
+        if (looksLikeCodeLine(current) && (looksLikeCodeLine(next) || next.trim() === '' || i > 0)) {
+            firstCodeIndex = i;
+            break;
+        }
+    }
+
+    if (firstCodeIndex !== -1) {
+        const textPart = lines.slice(0, firstCodeIndex).join('\n').trim();
+        const codePart = lines.slice(firstCodeIndex).join('\n').trim();
+        const lang = detectCodeLanguage(category, codePart);
+
+        if (textPart) {
+            return `${textPart}\n\n\`\`\`${lang}\n${codePart}\n\`\`\``;
+        }
+
+        return `\`\`\`${lang}\n${codePart}\n\`\`\``;
+    }
+
+    return answer;
+}
+
+const QuestionCard = ({ question }) => {
     const [expanded, setExpanded] = useState(false);
-    const [expandedSub, setExpandedSub] = useState(null);
 
-    const totalQuestions = useMemo(() => {
-        return Object.values(subcategories).reduce(
-            (sum, questions) => sum + questions.length,
-            0
-        );
-    }, [subcategories]);
+    const markdown = useMemo(() => {
+        if (!expanded) {
+            return '';
+        }
 
-    const subcategoryEntries = useMemo(() => {
-        return Object.entries(subcategories);
-    }, [subcategories]);
+        return question.normalizedAnswer || normalizeAnswerToMarkdown(question.answer, question.category);
+    }, [expanded, question.answer, question.category, question.normalizedAnswer]);
 
     return (
         <Accordion
             expanded={expanded}
             onChange={() => setExpanded(!expanded)}
             sx={{
-                mb: 2.25,
-                borderRadius: '14px !important',
-                overflow: 'hidden',
                 background:
-                    'linear-gradient(180deg, rgba(16,22,35,0.96) 0%, rgba(11,15,25,0.96) 100%)',
-                border: '1px solid rgba(255,255,255,0.06)',
-                boxShadow: '0 14px 36px rgba(0,0,0,0.24)',
+                    'linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.018))',
+                border: '1px solid rgba(255,255,255,0.055)',
+                boxShadow: 'none',
+                borderRadius: '10px !important',
+                overflow: 'hidden',
+                transition: 'transform 0.18s ease, border-color 0.18s ease, background 0.18s ease',
+                '&:hover': {
+                    transform: 'translateY(-1px)',
+                    borderColor: 'rgba(139,92,246,0.24)',
+                    background:
+                        'linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.022))',
+                },
             }}
         >
-            <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                sx={{
-                    minHeight: 66,
-                    '& .MuiAccordionSummary-content': {
-                        my: 1.2,
-                    },
-                }}
-            >
-                <Box
-                    sx={{
-                        width: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: 2,
-                        pr: 1,
-                    }}
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography
+                    variant="subtitle1"
+                    color="text.primary"
                 >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
-                        <Box
-                            sx={{
-                                width: 10,
-                                height: 10,
-                                borderRadius: '50%',
-                                background:
-                                    'linear-gradient(135deg, rgba(139,92,246,1), rgba(34,211,238,1))',
-                                boxShadow:
-                                    '0 0 18px rgba(139,92,246,0.45), 0 0 24px rgba(34,211,238,0.18)',
-                                flexShrink: 0,
-                            }}
-                        />
-                        <Typography variant="h5">{category}</Typography>
-                    </Box>
-
-                    <Chip label={`${totalQuestions}`} size="small" />
-                </Box>
+                    {question.title}
+                </Typography>
             </AccordionSummary>
 
-            <AccordionDetails sx={{ pt: 0.5 }}>
-                {/* 🚀 Render subcategories ONLY when category expanded */}
-                {expanded &&
-                    subcategoryEntries.map(([subcategory, questions]) => {
-                        const isSubExpanded = expandedSub === subcategory;
+            <AccordionDetails>
+                {!!question.tags?.length && (
+                    <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ mb: 2 }}>
+                        {question.tags.map((tag) => (
+                            <Chip key={tag} label={tag} size="small" />
+                        ))}
+                    </Stack>
+                )}
 
-                        return (
-                            <Accordion
-                                key={subcategory}
-                                expanded={isSubExpanded}
-                                onChange={() =>
-                                    setExpandedSub(isSubExpanded ? null : subcategory)
-                                }
-                                sx={{
-                                    mb: 1.75,
-                                    borderRadius: '12px !important',
-                                    background:
-                                        'linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.015))',
-                                    border: '1px solid rgba(255,255,255,0.05)',
-                                    boxShadow: 'none',
-                                    overflow: 'hidden',
-                                }}
-                            >
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    sx={{
-                                        minHeight: 58,
-                                    }}
-                                >
+                {expanded && (
+                    <Box
+                        sx={{
+                            color: 'text.secondary',
+                            lineHeight: 1.8,
+                            '& p': { mb: 2, mt: 0 },
+                            '& ul, & ol': { pl: 3, mb: 2 },
+                            '& li': { mb: 0.5 },
+                            '& code': {
+                                fontFamily: '"JetBrains Mono", "Fira Code", "Consolas", monospace',
+                            },
+                            '& pre': {
+                                m: 0,
+                            },
+                            '& table': {
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                mb: 2,
+                                overflow: 'hidden',
+                                borderRadius: 2,
+                            },
+                            '& th, & td': {
+                                border: '1px solid rgba(255,255,255,0.08)',
+                                padding: '10px 12px',
+                                textAlign: 'left',
+                            },
+                            '& th': {
+                                backgroundColor: 'rgba(255,255,255,0.04)',
+                            },
+                        }}
+                    >
+                        <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            components={{
+                                code({ inline, className, children, ...props }) {
+                                    const rawCode = String(children).replace(/\n$/, '');
+                                    const match = /language-(\w+)/.exec(className || '');
+                                    const detectedLanguage =
+                                        match?.[1] || detectCodeLanguage(question.category, rawCode);
+
+                                    if (inline) {
+                                        return (
+                                            <Box
+                                                component="code"
+                                                sx={{
+                                                    px: 0.75,
+                                                    py: 0.25,
+                                                    borderRadius: 1,
+                                                    backgroundColor: 'rgba(255,255,255,0.08)',
+                                                    fontSize: '0.9em',
+                                                }}
+                                                {...props}
+                                            >
+                                                {children}
+                                            </Box>
+                                        );
+                                    }
+
+                                    return (
+                                        <Box sx={{ mb: 2 }}>
+                                            <SyntaxHighlighter
+                                                language={detectedLanguage || 'text'}
+                                                style={oneDark}
+                                                PreTag="div"
+                                                customStyle={{
+                                                    margin: 0,
+                                                    borderRadius: '10px',
+                                                    padding: '16px',
+                                                    background: '#0b1020',
+                                                    border: '1px solid rgba(255,255,255,0.08)',
+                                                    overflowX: 'auto',
+                                                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)',
+                                                }}
+                                                codeTagProps={{
+                                                    style: {
+                                                        fontFamily:
+                                                            '"JetBrains Mono", "Fira Code", "Consolas", monospace',
+                                                        fontSize: '0.95rem',
+                                                    },
+                                                }}
+                                                {...props}
+                                            >
+                                                {rawCode}
+                                            </SyntaxHighlighter>
+                                        </Box>
+                                    );
+                                },
+                                h1: ({ children }) => (
+                                    <Typography variant="h5" sx={{ mt: 2, mb: 1.5 }}>
+                                        {children}
+                                    </Typography>
+                                ),
+                                h2: ({ children }) => (
+                                    <Typography variant="h6" sx={{ mt: 2, mb: 1.5 }}>
+                                        {children}
+                                    </Typography>
+                                ),
+                                h3: ({ children }) => (
+                                    <Typography variant="subtitle1" sx={{ mt: 2, mb: 1 }}>
+                                        {children}
+                                    </Typography>
+                                ),
+                                p: ({ children }) => (
+                                    <Typography variant="body1" sx={{ mb: 2, whiteSpace: 'pre-wrap' }}>
+                                        {children}
+                                    </Typography>
+                                ),
+                                li: ({ children }) => (
+                                    <li>
+                                        <Typography variant="body1" component="span">
+                                            {children}
+                                        </Typography>
+                                    </li>
+                                ),
+                                blockquote: ({ children }) => (
                                     <Box
                                         sx={{
-                                            width: '100%',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'space-between',
-                                            gap: 2,
-                                            pr: 1,
+                                            borderLeft: '3px solid',
+                                            borderColor: 'primary.main',
+                                            pl: 2,
+                                            py: 0.8,
+                                            my: 2,
+                                            opacity: 0.95,
+                                            backgroundColor: 'rgba(255,255,255,0.02)',
+                                            borderRadius: 1.5,
                                         }}
                                     >
-                                        <Typography
-                                            variant="h6"
-                                            sx={{
-                                                color: 'text.primary',
-                                                opacity: 0.95,
-                                            }}
-                                        >
-                                            {subcategory}
-                                        </Typography>
-
-                                        <Chip
-                                            label={`${questions.length} questions`}
-                                            size="small"
-                                        />
+                                        {children}
                                     </Box>
-                                </AccordionSummary>
-
-                                <AccordionDetails sx={{ pt: 0.5 }}>
-                                    {/* 🚀 Render questions ONLY when subcategory expanded */}
-                                    {isSubExpanded && (
-                                        <Box sx={{ display: 'grid', gap: 1.1 }}>
-                                            {questions.map((question) => (
-                                                <QuestionCard
-                                                    key={question.id}
-                                                    question={question}
-                                                />
-                                            ))}
-                                        </Box>
-                                    )}
-                                </AccordionDetails>
-                            </Accordion>
-                        );
-                    })}
+                                ),
+                            }}
+                        >
+                            {markdown}
+                        </ReactMarkdown>
+                    </Box>
+                )}
             </AccordionDetails>
         </Accordion>
     );
 };
 
-export default memo(CategoryAccordion);
+export default memo(QuestionCard);

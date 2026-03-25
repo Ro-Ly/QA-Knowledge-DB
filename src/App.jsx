@@ -132,55 +132,8 @@ function App() {
                 mx: 'auto',
                 px: { xs: 2, md: 4 },
                 py: { xs: 4, md: 7 },
-                overflow: 'hidden',
             }}
         >
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: -120,
-                    left: -100,
-                    width: 280,
-                    height: 280,
-                    borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(139,92,246,0.18), transparent 70%)',
-                    filter: 'blur(28px)',
-                    pointerEvents: 'none',
-                    zIndex: 0,
-                }}
-            />
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: 30,
-                    right: -90,
-                    width: 320,
-                    height: 320,
-                    borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(34,211,238,0.14), transparent 72%)',
-                    filter: 'blur(34px)',
-                    pointerEvents: 'none',
-                    zIndex: 0,
-                }}
-            />
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: 260,
-                    right: '14%',
-                    width: 180,
-                    height: 180,
-                    transform: 'rotate(24deg)',
-                    borderRadius: '28px',
-                    border: '1px solid rgba(255,255,255,0.04)',
-                    background:
-                        'linear-gradient(135deg, rgba(139,92,246,0.06), rgba(34,211,238,0.04))',
-                    filter: 'blur(2px)',
-                    pointerEvents: 'none',
-                    zIndex: 0,
-                }}
-            />
-
             <Box
                 sx={{
                     position: 'relative',
@@ -189,11 +142,11 @@ function App() {
                     px: { xs: 2.5, md: 4.5 },
                     py: { xs: 3, md: 4.5 },
                     borderRadius: 4,
-                    border: '1px solid rgba(255,255,255,0.07)',
+                    border: '1px solid rgba(255,255,255,0.06)',
                     background:
-                        'linear-gradient(180deg, rgba(18,24,38,0.88) 0%, rgba(11,15,25,0.82) 100%)',
-                    backdropFilter: 'blur(18px)',
-                    boxShadow: '0 22px 60px rgba(0,0,0,0.34)',
+                        'linear-gradient(180deg, rgba(13,18,30,0.78) 0%, rgba(9,13,22,0.74) 100%)',
+                    backdropFilter: 'blur(14px)',
+                    boxShadow: '0 18px 44px rgba(0,0,0,0.24)',
                     overflow: 'hidden',
                 }}
             >
@@ -202,7 +155,7 @@ function App() {
                         position: 'absolute',
                         inset: 0,
                         background:
-                            'radial-gradient(circle at 14% 18%, rgba(139,92,246,0.10), transparent 22%), radial-gradient(circle at 86% 18%, rgba(34,211,238,0.08), transparent 22%)',
+                            'radial-gradient(circle at 16% 16%, rgba(139,92,246,0.08), transparent 20%), radial-gradient(circle at 84% 18%, rgba(34,211,238,0.06), transparent 18%)',
                         pointerEvents: 'none',
                     }}
                 />
@@ -218,8 +171,6 @@ function App() {
                     sx={{
                         maxWidth: 920,
                         mb: 2,
-                        fontSize: { xs: '2.1rem', md: '3.3rem' },
-                        lineHeight: 1.05,
                     }}
                 >
                     QA Interview Knowledge Base
@@ -231,7 +182,6 @@ function App() {
                     sx={{
                         maxWidth: 760,
                         mb: 3,
-                        fontSize: { xs: '1rem', md: '1.05rem' },
                         lineHeight: 1.8,
                     }}
                 >
@@ -260,10 +210,11 @@ function App() {
                     px: { xs: 2.5, md: 3 },
                     py: { xs: 2.5, md: 3 },
                     borderRadius: 4,
-                    border: '1px solid rgba(255,255,255,0.06)',
-                    background: 'rgba(10, 14, 28, 0.76)',
-                    backdropFilter: 'blur(16px)',
-                    boxShadow: '0 16px 42px rgba(0,0,0,0.28)',
+                    border: '1px solid rgba(255,255,255,0.055)',
+                    background:
+                        'linear-gradient(180deg, rgba(11,15,25,0.74) 0%, rgba(9,12,20,0.72) 100%)',
+                    backdropFilter: 'blur(12px)',
+                    boxShadow: '0 14px 34px rgba(0,0,0,0.2)',
                 }}
             >
                 <Typography variant="h5" sx={{ mb: 2 }}>
@@ -298,7 +249,8 @@ function App() {
                         p: 4,
                         borderRadius: 3,
                         border: '1px solid rgba(255,255,255,0.07)',
-                        background: 'rgba(10, 14, 28, 0.68)',
+                        background: 'rgba(10, 14, 28, 0.62)',
+                        backdropFilter: 'blur(10px)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -318,7 +270,8 @@ function App() {
                         p: 3,
                         borderRadius: 3,
                         border: '1px solid rgba(255,255,255,0.07)',
-                        background: 'rgba(10, 14, 28, 0.68)',
+                        background: 'rgba(10, 14, 28, 0.62)',
+                        backdropFilter: 'blur(10px)',
                     }}
                 >
                     <Typography variant="body1" color="text.secondary">

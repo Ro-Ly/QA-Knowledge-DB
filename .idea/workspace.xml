@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Code parsing markdown">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/design/css/css-tricks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/design/responsive/responsive-design.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/development/git/git-basics.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/development/npm/npm-tips.json" beforeDir="false" />
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Performance improve: Iteration 2, Search">
+      <change beforePath="$PROJECT_DIR$/src/components/QuestionCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionCard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +57,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -95,7 +92,7 @@
       <workItem from="1774453411780" duration="282000" />
       <workItem from="1774453707335" duration="2586000" />
       <workItem from="1774457084340" duration="1557000" />
-      <workItem from="1774462043878" duration="12049000" />
+      <workItem from="1774462043878" duration="14828000" />
     </task>
     <task id="LOCAL-00001" summary="Initial main setup">
       <option name="closed" value="true" />
@@ -281,7 +278,47 @@
       <option name="project" value="LOCAL" />
       <updated>1774476600002</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="CSS Style changes">
+      <option name="closed" value="true" />
+      <created>1774477969499</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1774477969499</updated>
+    </task>
+    <task id="LOCAL-00025" summary="CSS Style changes">
+      <option name="closed" value="true" />
+      <created>1774478597938</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1774478597938</updated>
+    </task>
+    <task id="LOCAL-00026" summary="CSS Style changes">
+      <option name="closed" value="true" />
+      <created>1774479609715</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1774479609715</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Performance improve: Iteration 1">
+      <option name="closed" value="true" />
+      <created>1774480105455</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1774480105455</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Performance improve: Iteration 2, Search">
+      <option name="closed" value="true" />
+      <created>1774480190674</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1774480190674</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +346,10 @@
     <MESSAGE value="Base questions set is added" />
     <MESSAGE value="Base questions code blocks fix" />
     <MESSAGE value="Code parsing markdown" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code parsing markdown" />
+    <MESSAGE value="CSS Style changes" />
+    <MESSAGE value="Performance improve: Iteration 1" />
+    <MESSAGE value="Performance improve: Iteration 2, Search" />
+    <option name="LAST_COMMIT_MESSAGE" value="Performance improve: Iteration 2, Search" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
