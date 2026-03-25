@@ -8,6 +8,7 @@ import { Box, Typography, Stack, Chip, CircularProgress } from '@mui/material';
 import SearchBar from './components/SearchBar';
 import TagFilter from './components/TagFilter';
 import CategoryAccordion from './components/CategoryAccordion';
+import QuestionCard from './components/QuestionCard';
 import { getAllQuestions } from './data';
 
 function useDebouncedValue(value, delay = 180) {
@@ -36,12 +37,15 @@ function App() {
 
             const data = await getAllQuestions();
 
-            // Precompute lowercase searchable text ONCE
             const prepared = data.map((q, index) => ({
                 ...q,
-                id: q.id ?? `${q.category || 'uncategorized'}-${q.subcategory || 'general'}-${index}`,
-                _searchText: `${q.title || ''} ${q.answer || ''} ${(q.tags || []).join(' ')}`
-                    .toLowerCase(),
+                id:
+                    q.id ??
+                    `${q.category || 'uncategorized'}-${q.subcategory || 'general'}-${index}`,
+                _searchText:
+                    q._searchText ??
+                    `${q.title || ''} ${q.answer || ''} ${(q.tags || []).join(' ')}`
+                        .toLowerCase(),
             }));
 
             setQuestions(prepared);
@@ -58,6 +62,7 @@ function App() {
     }, [questions]);
 
     const normalizedSearch = deferredSearch.trim().toLowerCase();
+    const isSearchMode = normalizedSearch.length > 0;
 
     const filteredQuestions = useMemo(() => {
         return questions.filter((question) => {
@@ -75,6 +80,8 @@ function App() {
     }, [questions, normalizedSearch, selectedTags]);
 
     const groupedQuestions = useMemo(() => {
+        if (isSearchMode) return {};
+
         return filteredQuestions.reduce((acc, question) => {
             const category = question.category || 'Uncategorized';
             const subcategory = question.subcategory || 'General';
@@ -85,11 +92,37 @@ function App() {
             acc[category][subcategory].push(question);
             return acc;
         }, {});
-    }, [filteredQuestions]);
+    }, [filteredQuestions, isSearchMode]);
 
     const groupedEntries = useMemo(() => {
+        if (isSearchMode) return [];
         return Object.entries(groupedQuestions);
-    }, [groupedQuestions]);
+    }, [groupedQuestions, isSearchMode]);
+
+    const flatSearchResults = useMemo(() => {
+        if (!isSearchMode) return [];
+
+        return [...filteredQuestions].sort((a, b) => {
+            const aTitle = a.title || '';
+            const bTitle = b.title || '';
+
+            const aStarts = aTitle.toLowerCase().startsWith(normalizedSearch);
+            const bStarts = bTitle.toLowerCase().startsWith(normalizedSearch);
+
+            if (aStarts !== bStarts) {
+                return aStarts ? -1 : 1;
+            }
+
+            const aCategory = a.category || '';
+            const bCategory = b.category || '';
+
+            if (aCategory !== bCategory) {
+                return aCategory.localeCompare(bCategory);
+            }
+
+            return aTitle.localeCompare(bTitle);
+        });
+    }, [filteredQuestions, isSearchMode, normalizedSearch]);
 
     return (
         <Box
@@ -102,7 +135,6 @@ function App() {
                 overflow: 'hidden',
             }}
         >
-            {/* Abstract background graphics */}
             <Box
                 sx={{
                     position: 'absolute',
@@ -149,7 +181,6 @@ function App() {
                 }}
             />
 
-            {/* Hero */}
             <Box
                 sx={{
                     position: 'relative',
@@ -210,12 +241,17 @@ function App() {
 
                 <Stack direction="row" spacing={1.2} useFlexGap flexWrap="wrap">
                     <Chip label={`${questions.length} questions`} />
-                    <Chip label={`${groupedEntries.length} categories`} />
+                    <Chip
+                        label={
+                            isSearchMode
+                                ? `${flatSearchResults.length} results`
+                                : `${groupedEntries.length} categories`
+                        }
+                    />
                     <Chip label={`${allTags.length} tags`} />
                 </Stack>
             </Box>
 
-            {/* Search / filters */}
             <Box
                 sx={{
                     position: 'relative',
@@ -231,7 +267,7 @@ function App() {
                 }}
             >
                 <Typography variant="h5" sx={{ mb: 2 }}>
-                    Explore the knowledge base
+                    {isSearchMode ? 'Search results' : 'Explore the knowledge base'}
                 </Typography>
 
                 <SearchBar value={searchTerm} onChange={setSearchTerm} />
@@ -241,9 +277,19 @@ function App() {
                     selectedTags={selectedTags}
                     onSelect={setSelectedTags}
                 />
+
+                {isSearchMode && !isLoading && (
+                    <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ mt: 2 }}
+                    >
+                        Found {flatSearchResults.length} matching question
+                        {flatSearchResults.length === 1 ? '' : 's'} for "{deferredSearch}".
+                    </Typography>
+                )}
             </Box>
 
-            {/* Results */}
             {isLoading ? (
                 <Box
                     sx={{
@@ -264,7 +310,7 @@ function App() {
                         Loading knowledge base...
                     </Typography>
                 </Box>
-            ) : groupedEntries.length === 0 ? (
+            ) : filteredQuestions.length === 0 ? (
                 <Box
                     sx={{
                         position: 'relative',
@@ -278,6 +324,44 @@ function App() {
                     <Typography variant="body1" color="text.secondary">
                         😶 No questions found. Try another keyword or remove some filters.
                     </Typography>
+                </Box>
+            ) : isSearchMode ? (
+                <Box
+                    sx={{
+                        position: 'relative',
+                        zIndex: 1,
+                        display: 'grid',
+                        gap: 1.25,
+                    }}
+                >
+                    {flatSearchResults.map((question) => (
+                        <Box key={question.id}>
+                            <Box
+                                sx={{
+                                    mb: 0.75,
+                                    px: 0.25,
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: 1,
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Chip
+                                    size="small"
+                                    label={question.category || 'Uncategorized'}
+                                    sx={{
+                                        backgroundColor: 'rgba(139,92,246,0.12)',
+                                        border: '1px solid rgba(139,92,246,0.22)',
+                                    }}
+                                />
+                                <Typography variant="body2" color="text.secondary">
+                                    {question.subcategory || 'General'}
+                                </Typography>
+                            </Box>
+
+                            <QuestionCard question={question} />
+                        </Box>
+                    ))}
                 </Box>
             ) : (
                 groupedEntries.map(([category, subcategories]) => (
