@@ -24,27 +24,105 @@ function detectCodeLanguage(category, code) {
     if (c.includes('http')) return 'http';
     if (codeTrim.startsWith('{') || codeTrim.startsWith('[')) return 'json';
 
+    if (codeTrim.includes('System.out.println') || codeTrim.includes('class ')) return 'java';
+
+    if (
+        codeTrim.includes('SELECT ') ||
+        codeTrim.includes('INSERT ') ||
+        codeTrim.includes('UPDATE ') ||
+        codeTrim.includes('DELETE ') ||
+        codeTrim.includes('CREATE VIEW')
+    ) {
+        return 'sql';
+    }
+
+    if (codeTrim.includes('curl ') || codeTrim.includes('HTTP/1.1')) return 'http';
+
     return '';
 }
 
-function normalizeAnswerToMarkdown(answer = '') {
+function looksLikeCodeLine(line = '') {
+    const trimmed = line.trim();
+
+    if (!trimmed) return false;
+
+    return (
+        trimmed.endsWith('{') ||
+        trimmed === '}' ||
+        trimmed === '};' ||
+        trimmed.includes('();') ||
+        trimmed.includes('System.out.') ||
+        trimmed.includes('console.log') ||
+        trimmed.includes('SELECT ') ||
+        trimmed.includes('INSERT ') ||
+        trimmed.includes('UPDATE ') ||
+        trimmed.includes('DELETE ') ||
+        trimmed.includes('CREATE ') ||
+        trimmed.includes('FROM ') ||
+        trimmed.includes('WHERE ') ||
+        trimmed.includes('class ') ||
+        trimmed.includes('public ') ||
+        trimmed.includes('private ') ||
+        trimmed.includes('protected ') ||
+        trimmed.includes('void ') ||
+        trimmed.includes('return ') ||
+        trimmed.includes('extends ') ||
+        trimmed.includes('implements ') ||
+        trimmed.includes('super(') ||
+        trimmed.includes('this.') ||
+        /^<\/?[a-z][\s\S]*>/i.test(trimmed) ||
+        /^[\w$]+\s*\(.*\)\s*\{?$/.test(trimmed)
+    );
+}
+
+function normalizeAnswerToMarkdown(answer = '', category = '') {
     if (!answer) return '';
 
-    const codeMarkerRegex = /\n?Код:\n([\s\S]*)$/i;
-    const match = answer.match(codeMarkerRegex);
+    if (answer.includes('```')) {
+        return answer;
+    }
 
-    if (match) {
-        const textPart = answer.replace(codeMarkerRegex, '').trim();
-        const codePart = match[1].trim();
+    const markerMatch = answer.match(/([\s\S]*?)(\n(?:Код|Пример):\n)([\s\S]*)/i);
 
-        return `${textPart}\n\n\`\`\`\n${codePart}\n\`\`\``;
+    if (markerMatch) {
+        const textPart = markerMatch[1].trim();
+        const marker = markerMatch[2].trim();
+        const codePart = markerMatch[3].trim();
+        const lang = detectCodeLanguage(category, codePart);
+
+        return `${textPart}\n\n${marker}\n\n\`\`\`${lang}\n${codePart}\n\`\`\``;
+    }
+
+    const lines = answer.split('\n');
+    let firstCodeIndex = -1;
+
+    for (let i = 0; i < lines.length; i++) {
+        const current = lines[i];
+        const next = lines[i + 1] || '';
+
+        if (looksLikeCodeLine(current) && (looksLikeCodeLine(next) || next.trim() === '' || i > 0)) {
+            firstCodeIndex = i;
+            break;
+        }
+    }
+
+    if (firstCodeIndex !== -1) {
+        const textPart = lines.slice(0, firstCodeIndex).join('\n').trim();
+        const codePart = lines.slice(firstCodeIndex).join('\n').trim();
+        const lang = detectCodeLanguage(category, codePart);
+
+        if (textPart) {
+            return `${textPart}\n\n\`\`\`${lang}\n${codePart}\n\`\`\``;
+        }
+
+        return `\`\`\`${lang}\n${codePart}\n\`\`\``;
     }
 
     return answer;
 }
 
 const QuestionCard = ({ question }) => {
-    const markdown = normalizeAnswerToMarkdown(question.answer);
+    const markdown = normalizeAnswerToMarkdown(question.answer, question.category);
 
     return (
         <Accordion

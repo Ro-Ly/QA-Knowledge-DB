@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Base questions code blocks fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Code parsing markdown" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +89,7 @@
       <workItem from="1774453411780" duration="282000" />
       <workItem from="1774453707335" duration="2586000" />
       <workItem from="1774457084340" duration="1557000" />
-      <workItem from="1774462043878" duration="10348000" />
+      <workItem from="1774462043878" duration="10944000" />
     </task>
     <task id="LOCAL-00001" summary="Initial main setup">
       <option name="closed" value="true" />
@@ -264,7 +259,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774474950572</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Code parsing markdown">
+      <option name="closed" value="true" />
+      <created>1774476018321</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1774476018321</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +294,8 @@
     <MESSAGE value="Flat Base items DB is added" />
     <MESSAGE value="Base questions set is added" />
     <MESSAGE value="Base questions code blocks fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Base questions code blocks fix" />
+    <MESSAGE value="Code parsing markdown" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code parsing markdown" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
