@@ -46,7 +46,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/IdeaProjects",
+    "last_opened_file_path": "C:/IdeaProjects/QA-interview-knowledge-base-app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -60,6 +60,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\IdeaProjects\QA-interview-knowledge-base-app" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -80,7 +85,7 @@
       <workItem from="1774453411780" duration="282000" />
       <workItem from="1774453707335" duration="2586000" />
       <workItem from="1774457084340" duration="1557000" />
-      <workItem from="1774462043878" duration="486000" />
+      <workItem from="1774462043878" duration="1299000" />
     </task>
     <task id="LOCAL-00001" summary="Initial main setup">
       <option name="closed" value="true" />
@@ -146,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774462413824</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Initial main setup">
+      <option name="closed" value="true" />
+      <created>1774462841372</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1774462841372</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
