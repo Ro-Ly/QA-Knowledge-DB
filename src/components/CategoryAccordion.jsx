@@ -22,9 +22,25 @@ const CategoryAccordion = ({ category, subcategories }) => {
         <Accordion
             expanded={expanded}
             onChange={() => setExpanded(!expanded)}
-            sx={{ mb: 2.5 }}
+            sx={{
+                mb: 2.25,
+                borderRadius: '14px !important',
+                overflow: 'hidden',
+                background:
+                    'linear-gradient(180deg, rgba(16,22,35,0.96) 0%, rgba(11,15,25,0.96) 100%)',
+                border: '1px solid rgba(255,255,255,0.06)',
+                boxShadow: '0 14px 36px rgba(0,0,0,0.24)',
+            }}
         >
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                sx={{
+                    minHeight: 66,
+                    '& .MuiAccordionSummary-content': {
+                        my: 1.2,
+                    },
+                }}
+            >
                 <Box
                     sx={{
                         width: '100%',
@@ -35,23 +51,46 @@ const CategoryAccordion = ({ category, subcategories }) => {
                         pr: 1,
                     }}
                 >
-                    <Typography variant="h5">{category}</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
+                        <Box
+                            sx={{
+                                width: 10,
+                                height: 10,
+                                borderRadius: '50%',
+                                background:
+                                    'linear-gradient(135deg, rgba(139,92,246,1), rgba(34,211,238,1))',
+                                boxShadow:
+                                    '0 0 18px rgba(139,92,246,0.45), 0 0 24px rgba(34,211,238,0.18)',
+                                flexShrink: 0,
+                            }}
+                        />
+                        <Typography variant="h5">{category}</Typography>
+                    </Box>
+
                     <Chip label={`${totalQuestions}`} size="small" />
                 </Box>
             </AccordionSummary>
 
-            <AccordionDetails>
+            <AccordionDetails sx={{ pt: 0.5 }}>
                 {Object.entries(subcategories).map(([subcategory, questions]) => (
                     <Accordion
                         key={subcategory}
                         sx={{
-                            mb: 2,
-                            backgroundColor: 'rgba(255,255,255,0.025)',
+                            mb: 1.75,
+                            borderRadius: '12px !important',
+                            background:
+                                'linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.015))',
                             border: '1px solid rgba(255,255,255,0.05)',
                             boxShadow: 'none',
+                            overflow: 'hidden',
                         }}
                     >
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            sx={{
+                                minHeight: 58,
+                            }}
+                        >
                             <Box
                                 sx={{
                                     width: '100%',
@@ -62,13 +101,22 @@ const CategoryAccordion = ({ category, subcategories }) => {
                                     pr: 1,
                                 }}
                             >
-                                <Typography variant="h6">{subcategory}</Typography>
+                                <Typography
+                                    variant="h6"
+                                    sx={{
+                                        color: 'text.primary',
+                                        opacity: 0.95,
+                                    }}
+                                >
+                                    {subcategory}
+                                </Typography>
+
                                 <Chip label={`${questions.length} questions`} size="small" />
                             </Box>
                         </AccordionSummary>
 
-                        <AccordionDetails>
-                            <Box sx={{ display: 'grid', gap: 1.25 }}>
+                        <AccordionDetails sx={{ pt: 0.5 }}>
+                            <Box sx={{ display: 'grid', gap: 1.1 }}>
                                 {questions.map((question) => (
                                     <QuestionCard key={question.id} question={question} />
                                 ))}

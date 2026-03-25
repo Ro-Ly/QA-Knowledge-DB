@@ -1,126 +1,158 @@
-import { createTheme } from '@mui/material/styles';
+import { alpha, createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
     palette: {
-        mode: 'dark',
+        mode: "dark",
         primary: {
-            main: '#9B8CFF',
+            main: "#8b5cf6",
         },
         secondary: {
-            main: '#35E0FF',
+            main: "#22d3ee",
         },
         background: {
-            default: '#02040D',
-            paper: 'rgba(10, 14, 28, 0.88)',
+            default: "#07090f",
+            paper: "#0f1420",
         },
         text: {
-            primary: '#F5F7FF',
-            secondary: '#A8B3CF',
+            primary: "#eef2ff",
+            secondary: "#9aa4bf",
         },
-        divider: 'rgba(255,255,255,0.08)',
+        divider: alpha("#ffffff", 0.08),
     },
+
     shape: {
-        borderRadius: 14,
+        borderRadius: 10, // 👈 more subtle rounding
     },
+
     typography: {
-        fontFamily: '"Space Grotesk", "Inter", "Segoe UI", sans-serif',
-        h3: {
+        fontFamily: "Roboto, system-ui, sans-serif",
+
+        h1: {
+            fontFamily: '"Roboto Condensed", sans-serif',
             fontWeight: 700,
-            letterSpacing: '-0.04em',
-            lineHeight: 1.05,
+            fontSize: "2.4rem",
+            letterSpacing: "-0.02em",
+        },
+        h2: {
+            fontFamily: '"Roboto Condensed", sans-serif',
+            fontWeight: 700,
+            fontSize: "2rem",
+            letterSpacing: "-0.02em",
+        },
+        h3: {
+            fontFamily: '"Roboto Condensed", sans-serif',
+            fontWeight: 700,
+            fontSize: "1.6rem",
         },
         h4: {
+            fontFamily: '"Roboto Condensed", sans-serif',
             fontWeight: 700,
-            letterSpacing: '-0.03em',
+            fontSize: "1.3rem",
         },
         h5: {
-            fontWeight: 600,
-            letterSpacing: '-0.02em',
+            fontFamily: '"Roboto Condensed", sans-serif',
+            fontWeight: 700,
+            fontSize: "1.1rem",
         },
         h6: {
-            fontWeight: 600,
+            fontFamily: '"Roboto Condensed", sans-serif',
+            fontWeight: 700,
+            fontSize: "1rem",
         },
-        subtitle1: {
-            fontWeight: 600,
-        },
+
         body1: {
-            lineHeight: 1.8,
+            fontSize: "0.95rem",
+            lineHeight: 1.65,
+        },
+
+        body2: {
+            fontSize: "0.85rem",
+            lineHeight: 1.6,
+        },
+
+        button: {
+            textTransform: "none",
+            fontWeight: 500,
         },
     },
+
     components: {
         MuiCssBaseline: {
             styleOverrides: {
-                '@import': 'url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap")',
-                html: {
-                    scrollBehavior: 'smooth',
-                },
                 body: {
-                    margin: 0,
-                    minHeight: '100vh',
-                    background: `
-                        radial-gradient(circle at 10% 10%, rgba(120, 86, 255, 0.12), transparent 20%),
-                        radial-gradient(circle at 90% 20%, rgba(0, 224, 255, 0.08), transparent 20%),
-                        radial-gradient(circle at 50% 80%, rgba(255, 77, 166, 0.06), transparent 22%),
-                        linear-gradient(180deg, #01030A 0%, #02040D 40%, #040813 100%)
-                    `,
-                    color: '#F5F7FF',
+                    background:
+                        "radial-gradient(circle at top, rgba(139,92,246,0.10), transparent 25%), radial-gradient(circle at 85% 10%, rgba(34,211,238,0.08), transparent 20%), #07090f",
                 },
-                '#root': {
-                    minHeight: '100vh',
+
+                code: {
+                    fontFamily:
+                        '"JetBrains Mono", "Fira Code", monospace',
                 },
-                '*': {
-                    boxSizing: 'border-box',
-                },
-                '::selection': {
-                    background: 'rgba(155,140,255,0.35)',
+
+                pre: {
+                    fontFamily:
+                        '"JetBrains Mono", "Fira Code", monospace',
                 },
             },
         },
+
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 10,
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
+                },
+            },
+        },
+
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 12,
+                    background:
+                        "linear-gradient(180deg, rgba(18,24,38,0.96) 0%, rgba(11,15,25,0.96) 100%)",
+                },
+            },
+        },
+
         MuiAccordion: {
             styleOverrides: {
                 root: {
-                    backgroundImage: 'none',
-                    backgroundColor: 'rgba(10, 14, 28, 0.82)',
-                    backdropFilter: 'blur(14px)',
-                    border: '1px solid rgba(255,255,255,0.07)',
-                    borderRadius: '14px !important',
-                    overflow: 'hidden',
-                    boxShadow: '0 14px 40px rgba(0, 0, 0, 0.32)',
-                    '&:before': {
-                        display: 'none',
+                    borderRadius: "12px !important",
+                    overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.05)",
+                    boxShadow: "0 8px 22px rgba(0,0,0,0.22)",
+                    "&::before": {
+                        display: "none",
                     },
                 },
             },
         },
+
         MuiAccordionSummary: {
             styleOverrides: {
-                root: {
-                    minHeight: 64,
-                },
                 content: {
-                    margin: '14px 0',
+                    fontFamily: '"Roboto Condensed", sans-serif',
+                    fontWeight: 700,
+                    fontSize: "1rem",
                 },
             },
         },
+
         MuiChip: {
             styleOverrides: {
                 root: {
-                    borderRadius: 999,
-                    border: '1px solid rgba(255,255,255,0.10)',
-                    background: 'linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025))',
-                    color: '#F5F7FF',
-                    fontWeight: 500,
+                    borderRadius: 8,
+                    fontSize: "0.75rem",
                 },
             },
         },
-        MuiTextField: {
+
+        MuiButton: {
             styleOverrides: {
                 root: {
-                    '& .MuiOutlinedInput-root': {
-                        borderRadius: 12,
-                        backgroundColor: 'rgba(255,255,255,0.035)',
-                        backdropFilter: 'blur(10px)',
-                    },
+                    borderRadius: 8,
                 },
             },
         },

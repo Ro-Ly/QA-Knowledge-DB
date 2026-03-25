@@ -127,18 +127,29 @@ const QuestionCard = ({ question }) => {
     return (
         <Accordion
             sx={{
-                backgroundColor: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                background:
+                    'linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.018))',
+                border: '1px solid rgba(255,255,255,0.055)',
                 boxShadow: 'none',
-                transition: 'transform 0.2s ease, border-color 0.2s ease',
+                borderRadius: '10px !important',
+                overflow: 'hidden',
+                transition: 'transform 0.18s ease, border-color 0.18s ease, background 0.18s ease',
                 '&:hover': {
                     transform: 'translateY(-1px)',
-                    borderColor: 'rgba(155,140,255,0.28)',
+                    borderColor: 'rgba(139,92,246,0.24)',
+                    background:
+                        'linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.022))',
                 },
             }}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                <Typography
+                    variant="subtitle1"
+                    sx={{
+                        fontWeight: 700,
+                        color: 'text.primary',
+                    }}
+                >
                     {question.title}
                 </Typography>
             </AccordionSummary>
@@ -160,7 +171,7 @@ const QuestionCard = ({ question }) => {
                         '& ul, & ol': { pl: 3, mb: 2 },
                         '& li': { mb: 0.5 },
                         '& code': {
-                            fontFamily: '"Fira Code", "Consolas", "Monaco", monospace',
+                            fontFamily: '"JetBrains Mono", "Fira Code", "Consolas", monospace',
                         },
                         '& pre': {
                             m: 0,
@@ -170,6 +181,7 @@ const QuestionCard = ({ question }) => {
                             borderCollapse: 'collapse',
                             mb: 2,
                             overflow: 'hidden',
+                            borderRadius: 2,
                         },
                         '& th, & td': {
                             border: '1px solid rgba(255,255,255,0.08)',
@@ -216,7 +228,7 @@ const QuestionCard = ({ question }) => {
                                             PreTag="div"
                                             customStyle={{
                                                 margin: 0,
-                                                borderRadius: '14px',
+                                                borderRadius: '10px',
                                                 padding: '16px',
                                                 background: '#0b1020',
                                                 border: '1px solid rgba(255,255,255,0.08)',
@@ -225,7 +237,8 @@ const QuestionCard = ({ question }) => {
                                             }}
                                             codeTagProps={{
                                                 style: {
-                                                    fontFamily: '"Fira Code", "Consolas", "Monaco", monospace',
+                                                    fontFamily:
+                                                        '"JetBrains Mono", "Fira Code", "Consolas", monospace',
                                                     fontSize: '0.95rem',
                                                 },
                                             }}
@@ -266,14 +279,14 @@ const QuestionCard = ({ question }) => {
                             blockquote: ({ children }) => (
                                 <Box
                                     sx={{
-                                        borderLeft: '4px solid',
+                                        borderLeft: '3px solid',
                                         borderColor: 'primary.main',
                                         pl: 2,
-                                        py: 0.5,
+                                        py: 0.8,
                                         my: 2,
                                         opacity: 0.95,
                                         backgroundColor: 'rgba(255,255,255,0.02)',
-                                        borderRadius: 2,
+                                        borderRadius: 1.5,
                                     }}
                                 >
                                     {children}
