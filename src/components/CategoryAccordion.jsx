@@ -4,13 +4,19 @@ import {
     AccordionSummary,
     AccordionDetails,
     Typography,
-    Box
+    Box,
+    Chip
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import QuestionCard from './QuestionCard';
 
 const CategoryAccordion = ({ category, subcategories }) => {
     const [expanded, setExpanded] = useState(false);
+
+    const totalQuestions = Object.values(subcategories).reduce(
+        (sum, questions) => sum + questions.length,
+        0
+    );
 
     return (
         <Accordion
@@ -19,7 +25,19 @@ const CategoryAccordion = ({ category, subcategories }) => {
             sx={{ mb: 2.5 }}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="h5">{category}</Typography>
+                <Box
+                    sx={{
+                        width: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: 2,
+                        pr: 1,
+                    }}
+                >
+                    <Typography variant="h5">{category}</Typography>
+                    <Chip label={`📘 ${totalQuestions}`} size="small" />
+                </Box>
             </AccordionSummary>
 
             <AccordionDetails>
@@ -28,13 +46,27 @@ const CategoryAccordion = ({ category, subcategories }) => {
                         key={subcategory}
                         sx={{
                             mb: 2,
-                            backgroundColor: 'rgba(255,255,255,0.02)',
-                            border: '1px solid rgba(255,255,255,0.05)',
+                            backgroundColor: 'rgba(255,255,255,0.03)',
+                            border: '1px solid rgba(255,255,255,0.06)',
                             boxShadow: 'none',
                         }}
                     >
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography variant="h6">{subcategory}</Typography>
+                            <Box
+                                sx={{
+                                    width: '100%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    gap: 2,
+                                    pr: 1,
+                                }}
+                            >
+                                <Typography variant="h6">
+                                    ✨ {subcategory}
+                                </Typography>
+                                <Chip label={`${questions.length} questions`} size="small" />
+                            </Box>
                         </AccordionSummary>
 
                         <AccordionDetails>

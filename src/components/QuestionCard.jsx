@@ -127,14 +127,19 @@ const QuestionCard = ({ question }) => {
     return (
         <Accordion
             sx={{
-                backgroundColor: 'rgba(255,255,255,0.02)',
-                border: '1px solid rgba(255,255,255,0.05)',
+                backgroundColor: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,255,255,0.06)',
                 boxShadow: 'none',
+                transition: 'transform 0.2s ease, border-color 0.2s ease',
+                '&:hover': {
+                    transform: 'translateY(-1px)',
+                    borderColor: 'rgba(155,140,255,0.28)',
+                },
             }}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-                    {question.title}
+                    💡 {question.title}
                 </Typography>
             </AccordionSummary>
 
@@ -159,6 +164,20 @@ const QuestionCard = ({ question }) => {
                         },
                         '& pre': {
                             m: 0,
+                        },
+                        '& table': {
+                            width: '100%',
+                            borderCollapse: 'collapse',
+                            mb: 2,
+                            overflow: 'hidden',
+                        },
+                        '& th, & td': {
+                            border: '1px solid rgba(255,255,255,0.08)',
+                            padding: '10px 12px',
+                            textAlign: 'left',
+                        },
+                        '& th': {
+                            backgroundColor: 'rgba(255,255,255,0.04)',
                         },
                     }}
                 >
@@ -197,11 +216,12 @@ const QuestionCard = ({ question }) => {
                                             PreTag="div"
                                             customStyle={{
                                                 margin: 0,
-                                                borderRadius: '12px',
+                                                borderRadius: '14px',
                                                 padding: '16px',
-                                                background: '#0d1321',
+                                                background: '#0b1020',
                                                 border: '1px solid rgba(255,255,255,0.08)',
                                                 overflowX: 'auto',
+                                                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)',
                                             }}
                                             codeTagProps={{
                                                 style: {
@@ -251,7 +271,9 @@ const QuestionCard = ({ question }) => {
                                         pl: 2,
                                         py: 0.5,
                                         my: 2,
-                                        opacity: 0.9,
+                                        opacity: 0.95,
+                                        backgroundColor: 'rgba(255,255,255,0.02)',
+                                        borderRadius: 2,
                                     }}
                                 >
                                     {children}

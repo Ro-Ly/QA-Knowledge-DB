@@ -4,63 +4,75 @@ const theme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: '#8ab4ff',
+            main: '#9B8CFF',
         },
         secondary: {
-            main: '#b39ddb',
+            main: '#35E0FF',
         },
         background: {
-            default: '#0b1020',
-            paper: '#121a2b',
+            default: '#050816',
+            paper: 'rgba(14, 19, 40, 0.82)',
         },
         text: {
-            primary: '#f5f7fb',
-            secondary: '#aab4c8',
+            primary: '#F5F7FF',
+            secondary: '#A8B3CF',
         },
         divider: 'rgba(255,255,255,0.08)',
     },
     shape: {
-        borderRadius: 16,
+        borderRadius: 20,
     },
     typography: {
-        fontFamily: '"Inter", "Segoe UI", "Roboto", sans-serif',
-        h2: {
-            fontWeight: 700,
-            letterSpacing: '-0.02em',
-        },
+        fontFamily: '"Space Grotesk", "Inter", "Segoe UI", sans-serif',
         h3: {
             fontWeight: 700,
-            letterSpacing: '-0.02em',
+            letterSpacing: '-0.04em',
+            lineHeight: 1.05,
         },
         h4: {
-            fontWeight: 600,
+            fontWeight: 700,
+            letterSpacing: '-0.03em',
         },
         h5: {
             fontWeight: 600,
+            letterSpacing: '-0.02em',
         },
         h6: {
             fontWeight: 600,
         },
         subtitle1: {
-            fontWeight: 500,
+            fontWeight: 600,
         },
         body1: {
-            lineHeight: 1.75,
+            lineHeight: 1.8,
         },
     },
     components: {
         MuiCssBaseline: {
             styleOverrides: {
+                '@import': 'url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap")',
+                html: {
+                    scrollBehavior: 'smooth',
+                },
                 body: {
-                    background:
-                        'radial-gradient(circle at top, rgba(60,90,160,0.25), transparent 30%), #0b1020',
+                    margin: 0,
+                    minHeight: '100vh',
+                    background: `
+                        radial-gradient(circle at 12% 12%, rgba(120, 86, 255, 0.22), transparent 24%),
+                        radial-gradient(circle at 88% 18%, rgba(0, 224, 255, 0.16), transparent 22%),
+                        radial-gradient(circle at 52% 78%, rgba(255, 77, 166, 0.12), transparent 26%),
+                        linear-gradient(180deg, #040612 0%, #050816 45%, #070B1B 100%)
+                    `,
+                    color: '#F5F7FF',
+                },
+                '#root': {
                     minHeight: '100vh',
                 },
                 '*': {
                     boxSizing: 'border-box',
                 },
-                a: {
-                    color: 'inherit',
+                '::selection': {
+                    background: 'rgba(155,140,255,0.35)',
                 },
             },
         },
@@ -68,11 +80,12 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     backgroundImage: 'none',
-                    backgroundColor: '#121a2b',
-                    border: '1px solid rgba(255,255,255,0.06)',
-                    borderRadius: '16px !important',
+                    backgroundColor: 'rgba(14, 19, 40, 0.72)',
+                    backdropFilter: 'blur(14px)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: '20px !important',
                     overflow: 'hidden',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.22)',
+                    boxShadow: '0 18px 60px rgba(0, 0, 0, 0.28)',
                     '&:before': {
                         display: 'none',
                     },
@@ -82,10 +95,10 @@ const theme = createTheme({
         MuiAccordionSummary: {
             styleOverrides: {
                 root: {
-                    minHeight: 64,
+                    minHeight: 68,
                 },
                 content: {
-                    margin: '14px 0',
+                    margin: '16px 0',
                 },
             },
         },
@@ -93,8 +106,9 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 999,
-                    backgroundColor: 'rgba(138,180,255,0.12)',
-                    border: '1px solid rgba(138,180,255,0.25)',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))',
+                    color: '#F5F7FF',
                 },
             },
         },
@@ -102,8 +116,9 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     '& .MuiOutlinedInput-root': {
-                        borderRadius: 14,
-                        backgroundColor: 'rgba(255,255,255,0.03)',
+                        borderRadius: 16,
+                        backgroundColor: 'rgba(255,255,255,0.04)',
+                        backdropFilter: 'blur(10px)',
                     },
                 },
             },
