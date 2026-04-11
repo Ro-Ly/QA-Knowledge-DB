@@ -1,331 +1,213 @@
-import React, {
-    useState,
-    useEffect,
-    useMemo,
-    useDeferredValue,
-} from 'react';
-import { Box, Typography, Stack, Chip, CircularProgress } from '@mui/material';
+import { useEffect, useMemo, useState } from 'react';
+import {
+    Box,
+    CircularProgress,
+    Container,
+    CssBaseline,
+    Divider,
+    IconButton,
+    InputAdornment,
+    Stack,
+    Typography,
+} from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
 import SearchBar from './components/SearchBar';
 import TagFilter from './components/TagFilter';
 import CategoryAccordion from './components/CategoryAccordion';
-import QuestionCard from './components/QuestionCard';
 import { getAllQuestions } from './data';
-
-function useDebouncedValue(value, delay = 180) {
-    const [debounced, setDebounced] = useState(value);
-
-    useEffect(() => {
-        const id = setTimeout(() => setDebounced(value), delay);
-        return () => clearTimeout(id);
-    }, [value, delay]);
-
-    return debounced;
-}
+import theme from './theme';
 
 function App() {
     const [questions, setQuestions] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedTags, setSelectedTags] = useState([]);
+    const [search, setSearch] = useState('');
+    const [selectedTag, setSelectedTag] = useState('');
     const [isLoading, setIsLoading] = useState(true);
-
-    const debouncedSearch = useDebouncedValue(searchTerm, 180);
-    const deferredSearch = useDeferredValue(debouncedSearch);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const loadQuestions = async () => {
-            setIsLoading(true);
+            try {
+                setIsLoading(true);
+                setError('');
 
-            const data = await getAllQuestions();
-
-            const prepared = data.map((q, index) => ({
-                ...q,
-                id:
-                    q.id ??
-                    `${q.category || 'uncategorized'}-${q.subcategory || 'general'}-${index}`,
-                _searchText:
-                    q._searchText ??
-                    `${q.title || ''} ${q.answer || ''} ${(q.tags || []).join(' ')}`
-                        .toLowerCase(),
-            }));
-
-            setQuestions(prepared);
-            setIsLoading(false);
+                const data = await getAllQuestions();
+                setQuestions(data);
+            } catch (e) {
+                console.error('Failed to load questions:', e);
+                setError(e.message || 'Failed to load questions');
+            } finally {
+                setIsLoading(false);
+            }
         };
 
         loadQuestions();
     }, []);
 
-    const allTags = useMemo(() => {
-        return [...new Set(questions.flatMap((q) => q.tags || []))].sort((a, b) =>
-            a.localeCompare(b)
-        );
+    const tags = useMemo(() => {
+        const uniqueTags = new Set();
+
+        questions.forEach((question) => {
+            (question.tags || []).forEach((tag) => uniqueTags.add(tag));
+        });
+
+        return Array.from(uniqueTags).sort((a, b) => a.localeCompare(b));
     }, [questions]);
 
-    const normalizedSearch = deferredSearch.trim().toLowerCase();
-    const isSearchMode = normalizedSearch.length > 0;
-
     const filteredQuestions = useMemo(() => {
+        const normalizedSearch = search.trim().toLowerCase();
+
         return questions.filter((question) => {
-            const matchesSearch = normalizedSearch
-                ? question._searchText.includes(normalizedSearch)
-                : true;
+            const matchesSearch =
+                !normalizedSearch ||
+                question._searchText?.includes(normalizedSearch) ||
+                question.title?.toLowerCase().includes(normalizedSearch) ||
+                question.answer?.toLowerCase().includes(normalizedSearch);
 
-            const matchesTags =
-                selectedTags.length === 0
-                    ? true
-                    : selectedTags.every((tag) => (question.tags || []).includes(tag));
+            const matchesTag =
+                !selectedTag || (question.tags || []).includes(selectedTag);
 
-            return matchesSearch && matchesTags;
+            return matchesSearch && matchesTag;
         });
-    }, [questions, normalizedSearch, selectedTags]);
+    }, [questions, search, selectedTag]);
 
     const groupedQuestions = useMemo(() => {
-        if (isSearchMode) return {};
-
         return filteredQuestions.reduce((acc, question) => {
             const category = question.category || 'Uncategorized';
             const subcategory = question.subcategory || 'General';
 
-            if (!acc[category]) acc[category] = {};
-            if (!acc[category][subcategory]) acc[category][subcategory] = [];
+            if (!acc[category]) {
+                acc[category] = {};
+            }
+
+            if (!acc[category][subcategory]) {
+                acc[category][subcategory] = [];
+            }
 
             acc[category][subcategory].push(question);
             return acc;
         }, {});
-    }, [filteredQuestions, isSearchMode]);
+    }, [filteredQuestions]);
 
-    const groupedEntries = useMemo(() => {
-        if (isSearchMode) return [];
-        return Object.entries(groupedQuestions);
-    }, [groupedQuestions, isSearchMode]);
-
-    const flatSearchResults = useMemo(() => {
-        if (!isSearchMode) return [];
-
-        return [...filteredQuestions].sort((a, b) => {
-            const aTitle = a.title || '';
-            const bTitle = b.title || '';
-
-            const aStarts = aTitle.toLowerCase().startsWith(normalizedSearch);
-            const bStarts = bTitle.toLowerCase().startsWith(normalizedSearch);
-
-            if (aStarts !== bStarts) {
-                return aStarts ? -1 : 1;
-            }
-
-            const aCategory = a.category || '';
-            const bCategory = b.category || '';
-
-            if (aCategory !== bCategory) {
-                return aCategory.localeCompare(bCategory);
-            }
-
-            return aTitle.localeCompare(bTitle);
-        });
-    }, [filteredQuestions, isSearchMode, normalizedSearch]);
+    const totalVisibleQuestions = filteredQuestions.length;
+    const totalQuestions = questions.length;
 
     return (
-        <Box
-            sx={{
-                position: 'relative',
-                maxWidth: 1180,
-                mx: 'auto',
-                px: { xs: 2, md: 4 },
-                py: { xs: 4, md: 7 },
-            }}
-        >
+        <>
+            <CssBaseline />
             <Box
                 sx={{
-                    position: 'relative',
-                    zIndex: 1,
-                    mb: 4,
-                    px: { xs: 2.5, md: 4.5 },
-                    py: { xs: 3, md: 4.5 },
-                    borderRadius: 4,
-                    border: '1px solid rgba(255,255,255,0.06)',
-                    background:
-                        'linear-gradient(180deg, rgba(13,18,30,0.78) 0%, rgba(9,13,22,0.74) 100%)',
-                    backdropFilter: 'blur(14px)',
-                    boxShadow: '0 18px 44px rgba(0,0,0,0.24)',
-                    overflow: 'hidden',
+                    minHeight: '100vh',
+                    background: theme.palette.background.default,
+                    color: theme.palette.text.primary,
+                    py: { xs: 4, md: 6 },
                 }}
             >
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        background:
-                            'radial-gradient(circle at 16% 16%, rgba(139,92,246,0.08), transparent 20%), radial-gradient(circle at 84% 18%, rgba(34,211,238,0.06), transparent 18%)',
-                        pointerEvents: 'none',
-                    }}
-                />
+                <Container maxWidth="lg">
+                    <Stack spacing={3}>
+                        <Box>
+                            <Typography variant="h3" component="h1" gutterBottom>
+                                QA Knowledge DB
+                            </Typography>
+                            <Typography variant="body1" color="text.secondary">
+                                База вопросов и ответов для подготовки к собеседованиям по QA.
+                            </Typography>
+                        </Box>
 
-                <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ mb: 2 }}>
-                    <Chip label="📚 QA Prep" />
-                    <Chip label="⚡ Fast Search" />
-                    <Chip label="🧠 Structured Learning" />
-                </Stack>
+                        <Divider />
 
-                <Typography
-                    variant="h2"
-                    sx={{
-                        maxWidth: 920,
-                        mb: 2,
-                    }}
-                >
-                    QA Interview Knowledge Base
-                </Typography>
+                        <Stack spacing={2}>
+                            <SearchBar
+                                value={search}
+                                onChange={(event) => setSearch(event.target.value)}
+                                placeholder="Поиск по вопросам, ответам и тегам..."
+                                InputProps={{
+                                    endAdornment: search ? (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="clear search"
+                                                edge="end"
+                                                onClick={() => setSearch('')}
+                                            >
+                                                <ClearIcon />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ) : null,
+                                }}
+                            />
 
-                <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    sx={{
-                        maxWidth: 760,
-                        mb: 3,
-                        lineHeight: 1.8,
-                    }}
-                >
-                    Curated questions, concise explanations, code examples, and searchable topics
-                    across QA, automation, APIs, SQL, Java, architecture, and testing practices.
-                </Typography>
+                            <TagFilter
+                                tags={tags}
+                                selectedTag={selectedTag}
+                                onChange={setSelectedTag}
+                            />
 
-                <Stack direction="row" spacing={1.2} useFlexGap flexWrap="wrap">
-                    <Chip label={`${questions.length} questions`} />
-                    <Chip
-                        label={
-                            isSearchMode
-                                ? `${flatSearchResults.length} results`
-                                : `${groupedEntries.length} categories`
-                        }
-                    />
-                    <Chip label={`${allTags.length} tags`} />
-                </Stack>
-            </Box>
+                            <Typography variant="body2" color="text.secondary">
+                                Показано {totalVisibleQuestions} из {totalQuestions} вопросов
+                            </Typography>
+                        </Stack>
 
-            <Box
-                sx={{
-                    position: 'relative',
-                    zIndex: 1,
-                    mb: 4,
-                    px: { xs: 2.5, md: 3 },
-                    py: { xs: 2.5, md: 3 },
-                    borderRadius: 4,
-                    border: '1px solid rgba(255,255,255,0.055)',
-                    background:
-                        'linear-gradient(180deg, rgba(11,15,25,0.74) 0%, rgba(9,12,20,0.72) 100%)',
-                    backdropFilter: 'blur(12px)',
-                    boxShadow: '0 14px 34px rgba(0,0,0,0.2)',
-                }}
-            >
-                <Typography variant="h5" sx={{ mb: 2 }}>
-                    {isSearchMode ? 'Search results' : 'Explore the knowledge base'}
-                </Typography>
-
-                <SearchBar value={searchTerm} onChange={setSearchTerm} />
-
-                <TagFilter
-                    tags={allTags}
-                    selectedTags={selectedTags}
-                    onSelect={setSelectedTags}
-                />
-
-                {isSearchMode && !isLoading && (
-                    <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{ mt: 2 }}
-                    >
-                        Found {flatSearchResults.length} matching question
-                        {flatSearchResults.length === 1 ? '' : 's'} for "{deferredSearch}".
-                    </Typography>
-                )}
-            </Box>
-
-            {isLoading ? (
-                <Box
-                    sx={{
-                        position: 'relative',
-                        zIndex: 1,
-                        p: 4,
-                        borderRadius: 3,
-                        border: '1px solid rgba(255,255,255,0.07)',
-                        background: 'rgba(10, 14, 28, 0.62)',
-                        backdropFilter: 'blur(10px)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: 2,
-                    }}
-                >
-                    <CircularProgress size={24} />
-                    <Typography variant="body1" color="text.secondary">
-                        Loading knowledge base...
-                    </Typography>
-                </Box>
-            ) : filteredQuestions.length === 0 ? (
-                <Box
-                    sx={{
-                        position: 'relative',
-                        zIndex: 1,
-                        p: 3,
-                        borderRadius: 3,
-                        border: '1px solid rgba(255,255,255,0.07)',
-                        background: 'rgba(10, 14, 28, 0.62)',
-                        backdropFilter: 'blur(10px)',
-                    }}
-                >
-                    <Typography variant="body1" color="text.secondary">
-                        😶 No questions found. Try another keyword or remove some filters.
-                    </Typography>
-                </Box>
-            ) : isSearchMode ? (
-                <Box
-                    sx={{
-                        position: 'relative',
-                        zIndex: 1,
-                        display: 'grid',
-                        gap: 1.25,
-                    }}
-                >
-                    {flatSearchResults.map((question) => (
-                        <Box key={question.id}>
+                        {isLoading ? (
                             <Box
                                 sx={{
-                                    mb: 0.75,
-                                    px: 0.25,
                                     display: 'flex',
-                                    flexWrap: 'wrap',
-                                    gap: 1,
+                                    justifyContent: 'center',
                                     alignItems: 'center',
+                                    py: 10,
                                 }}
                             >
-                                <Chip
-                                    size="small"
-                                    label={question.category || 'Uncategorized'}
-                                    sx={{
-                                        backgroundColor: 'rgba(139,92,246,0.12)',
-                                        border: '1px solid rgba(139,92,246,0.22)',
-                                    }}
-                                />
+                                <CircularProgress />
+                            </Box>
+                        ) : error ? (
+                            <Box
+                                sx={{
+                                    py: 6,
+                                    px: 3,
+                                    borderRadius: 2,
+                                    backgroundColor: 'background.paper',
+                                    border: '1px solid',
+                                    borderColor: 'divider',
+                                }}
+                            >
+                                <Typography variant="h6" gutterBottom color="error">
+                                    Не удалось загрузить данные
+                                </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    {question.subcategory || 'General'}
+                                    {error}
                                 </Typography>
                             </Box>
-
-                            <QuestionCard question={question} />
-                        </Box>
-                    ))}
-                </Box>
-            ) : (
-                groupedEntries.map(([category, subcategories]) => (
-                    <CategoryAccordion
-                        key={category}
-                        category={category}
-                        subcategories={subcategories}
-                    />
-                ))
-            )}
-        </Box>
+                        ) : totalVisibleQuestions === 0 ? (
+                            <Box
+                                sx={{
+                                    py: 6,
+                                    textAlign: 'center',
+                                    borderRadius: 2,
+                                    backgroundColor: 'background.paper',
+                                    border: '1px solid',
+                                    borderColor: 'divider',
+                                }}
+                            >
+                                <Typography variant="h6" gutterBottom>
+                                    Ничего не найдено
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Попробуй изменить поисковый запрос или сбросить фильтр по тегу.
+                                </Typography>
+                            </Box>
+                        ) : (
+                            <Stack spacing={2}>
+                                {Object.entries(groupedQuestions).map(([category, subcategories]) => (
+                                    <CategoryAccordion
+                                        key={category}
+                                        category={category}
+                                        subcategories={subcategories}
+                                    />
+                                ))}
+                            </Stack>
+                        )}
+                    </Stack>
+                </Container>
+            </Box>
+        </>
     );
 }
 

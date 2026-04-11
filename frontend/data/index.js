@@ -1,3 +1,5 @@
+const API_BASE_URL = 'http://localhost:8080/api';
+
 function detectCodeLanguage(category, code) {
     const c = (category || '').toLowerCase();
     const codeTrim = (code || '').trim();
@@ -7,9 +9,7 @@ function detectCodeLanguage(category, code) {
     if (c.includes('git')) return 'bash';
     if (c.includes('http')) return 'http';
     if (codeTrim.startsWith('{') || codeTrim.startsWith('[')) return 'json';
-
-    if (codeTrim.includes('System.out.println') || codeTrim.includes('class '))
-        return 'java';
+    if (codeTrim.includes('System.out.println') || codeTrim.includes('class ')) return 'java';
 
     if (
         codeTrim.includes('SELECT ') ||
@@ -61,11 +61,9 @@ function looksLikeCodeLine(line = '') {
 
 function normalizeAnswerToMarkdown(answer = '', category = '') {
     if (!answer) return '';
-
     if (answer.includes('```')) return answer;
 
     const markerMatch = answer.match(/([\s\S]*?)(\n(?:Код|Пример):\n)([\s\S]*)/i);
-
     if (markerMatch) {
         const textPart = markerMatch[1].trim();
         const marker = markerMatch[2].trim();
@@ -103,65 +101,47 @@ function normalizeAnswerToMarkdown(answer = '', category = '') {
     return answer;
 }
 
+function buildSearchText(item) {
+    return [
+        item.title || '',
+        item.answer || '',
+        ...(Array.isArray(item.tags) ? item.tags : []),
+        item.category || '',
+        item.subcategory || '',
+    ]
+        .join(' ')
+        .toLowerCase();
+}
+
+function normalizeQuestion(item, index) {
+    const answer = item.answer ?? '';
+    const category = item.category ?? 'Uncategorized';
+    const subcategory = item.subcategory ?? 'General';
+
+    return {
+        id: item.id ?? `question-${index}`,
+        title: item.title ?? 'Untitled',
+        answer,
+        normalizedAnswer: normalizeAnswerToMarkdown(answer, category),
+        tags: Array.isArray(item.tags) ? item.tags.map((t) => String(t)) : [],
+        category,
+        subcategory,
+        _searchText: buildSearchText(item),
+    };
+}
+
 export async function getAllQuestions() {
-    const modules = import.meta.glob('./**/*.json');
+    const response = await fetch(`${API_BASE_URL}/questions`);
 
-    const loaded = await Promise.all(
-        Object.entries(modules).map(async ([filePath, loader]) => {
-            const mod = await loader();
-            const data = mod.default;
-
-            const parts = filePath.replace('./', '').split('/');
-            const categoryFromPath = parts[0] ?? 'Uncategorized';
-            const subcategoryFromPath =
-                parts.length > 2 ? parts[1] : 'General';
-
-            const normalizeItem = (item, index) => {
-                const category = item.category ?? categoryFromPath;
-                const subcategory = item.subcategory ?? subcategoryFromPath;
-                const answer = item.answer ?? '';
-
-                const normalizedAnswer = normalizeAnswerToMarkdown(
-                    answer,
-                    category
-                );
-
-                return {
-                    id: item.id ?? `${filePath}-${index}`,
-                    title: item.title ?? 'Untitled',
-                    answer,
-                    normalizedAnswer, // 🔥 precomputed
-                    tags: Array.isArray(item.tags)
-                        ? item.tags.map((t) => String(t))
-                        : [],
-                    category,
-                    subcategory,
-
-                    // 🔥 precomputed search field
-                    _searchText: `${item.title || ''} ${answer} ${(item.tags || []).join(' ')}`
-                        .toLowerCase(),
-                };
-            };
-
-            if (Array.isArray(data)) {
-                return data.map(normalizeItem);
-            }
-
-            return [normalizeItem(data, 0)];
-        })
-    );
-
-    const flat = loaded.flat();
-
-    // 🚀 Faster deduplication using Map
-    const map = new Map();
-
-    for (const item of flat) {
-        const key = `${item.title}__${item.category}__${item.subcategory}`;
-        if (!map.has(key)) {
-            map.set(key, item);
-        }
+    if (!response.ok) {
+        throw new Error(`Failed to fetch questions: ${response.status}`);
     }
 
-    return Array.from(map.values());
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+        throw new Error('Backend returned invalid questions payload');
+    }
+
+    return data.map(normalizeQuestion);
 }
