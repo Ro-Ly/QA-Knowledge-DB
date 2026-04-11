@@ -4,15 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Performance improve: Iteration 2, Search">
-      <change beforePath="$PROJECT_DIR$/src/components/QuestionCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionCard.jsx" afterDir="false" />
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Backend is added">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/data/all-questions.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/data/all-questions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/data/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/data/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -23,15 +38,18 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Ro-Ly/QA-interview-knowledge-base-app.git&quot;,
-    &quot;accountId&quot;: &quot;8b3691b4-803b-4d8f-800b-d5f69c123e0b&quot;
+    &quot;url&quot;: &quot;https://github.com/Ro-Ly/QA-Knowledge-DB.git&quot;,
+    &quot;accountId&quot;: &quot;c277eb4e-d197-4dbb-acb8-419f24ff77a4&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="3BRVSdPp6soryDJKHAwnds8Mjqb" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -42,16 +60,19 @@
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "feature/be-addition",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/IdeaProjects/QA-interview-knowledge-base-app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "C:/Users/rolyz/AppData/Roaming/JetBrains/IntelliJIdea2024.3/node/versions/25.8.2/node",
+    "nodejs_interpreter_path": "/Users/ruslanlyzko/Library/Application Support/JetBrains/IntelliJIdea2026.1/node/versions/24.14.1/bin/node",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
@@ -66,11 +87,25 @@
       <recent name="C:\IdeaProjects\QA-interview-knowledge-base-app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/src/main/resources/data" />
+      <recent name="$PROJECT_DIR$/backend/src/main/resources/data" />
       <recent name="C:\IdeaProjects\QA-interview-knowledge-base-app\src\data\design\responsive" />
       <recent name="C:\IdeaProjects\QA-interview-knowledge-base-app\src\data\design\css" />
       <recent name="C:\IdeaProjects\QA-interview-knowledge-base-app\src\data\development\npm" />
-      <recent name="C:\IdeaProjects\QA-interview-knowledge-base-app\src\data\development\git" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.roly.qakb" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="qa-knowledge-backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roly.qakb.BackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -93,6 +128,8 @@
       <workItem from="1774453707335" duration="2586000" />
       <workItem from="1774457084340" duration="1557000" />
       <workItem from="1774462043878" duration="14828000" />
+      <workItem from="1775914453674" duration="3503000" />
+      <workItem from="1775919545957" duration="2039000" />
     </task>
     <task id="LOCAL-00001" summary="Initial main setup">
       <option name="closed" value="true" />
@@ -318,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774480190674</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Backend is added">
+      <option name="closed" value="true" />
+      <created>1775920157318</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1775920157318</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +394,8 @@
     <MESSAGE value="CSS Style changes" />
     <MESSAGE value="Performance improve: Iteration 1" />
     <MESSAGE value="Performance improve: Iteration 2, Search" />
-    <option name="LAST_COMMIT_MESSAGE" value="Performance improve: Iteration 2, Search" />
+    <MESSAGE value="Backend is added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Backend is added" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
