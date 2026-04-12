@@ -1,15 +1,14 @@
 {
   "name": "qa-interview-knowledge-base",
   "version": "1.0.0",
-  "description": "",
-  "main": "vite.config.js",
+  "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:pages": "vite build --mode github-pages",
+    "preview": "vite preview"
   },
-  "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",

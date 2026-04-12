@@ -5,6 +5,7 @@ import com.roly.qakb.service.QuestionService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -16,6 +17,11 @@ public class QuestionController {
 
     public QuestionController(QuestionService service) {
         this.service = service;
+    }
+
+    @GetMapping("/health")
+    public Map<String, String> health() {
+        return Map.of("status", "UP");
     }
 
     @GetMapping("/questions")
