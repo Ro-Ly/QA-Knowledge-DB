@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Backend is added">
-      <change afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.env.production" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/roly/qakb/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/roly/qakb/controller/QuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/TagFilter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/TagFilter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/data/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/data/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +136,7 @@
       <workItem from="1775914453674" duration="3503000" />
       <workItem from="1775919545957" duration="5187000" />
       <workItem from="1775925130065" duration="16000" />
-      <workItem from="1775925159772" duration="2340000" />
+      <workItem from="1775925159772" duration="3002000" />
     </task>
     <task id="LOCAL-00001" summary="Initial main setup">
       <option name="closed" value="true" />
@@ -394,7 +378,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775921865174</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Backend is added">
+      <option name="closed" value="true" />
+      <created>1776013503419</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1776013503419</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
