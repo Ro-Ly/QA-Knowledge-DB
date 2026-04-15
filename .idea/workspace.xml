@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Backend is added">
-      <change afterPath="$PROJECT_DIR$/k8s/backend-deployment.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/backend-service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/frontend-deployment.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/frontend-nginx-configmap.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/frontend-service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/ingress.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/namespace.yaml" afterDir="false" />
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="KS Config is added">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/roly/qakb/BackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/roly/qakb/BackendApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +62,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "JUnit.BackendApplicationTests.contextLoads.executor": "Debug",
     "KUBERNETES_SUPPRESS_CONFIG_CLUSTER_SUGGESTION": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -106,7 +102,23 @@
       <recent name="com.roly.qakb" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BackendApplication">
+  <component name="RunManager" selected="JUnit.BackendApplicationTests.contextLoads">
+    <configuration name="BackendApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qa-knowledge-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roly.qakb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roly.qakb" />
+      <option name="MAIN_CLASS_NAME" value="com.roly.qakb.BackendApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="qa-knowledge-backend" />
@@ -123,6 +135,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BackendApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -148,7 +165,7 @@
       <workItem from="1775914453674" duration="3503000" />
       <workItem from="1775919545957" duration="5187000" />
       <workItem from="1775925130065" duration="16000" />
-      <workItem from="1775925159772" duration="18723000" />
+      <workItem from="1775925159772" duration="20442000" />
     </task>
     <task id="LOCAL-00001" summary="Initial main setup">
       <option name="closed" value="true" />
@@ -446,7 +463,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776018479949</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="KS Config is added">
+      <option name="closed" value="true" />
+      <created>1776198273888</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1776198273888</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +513,19 @@
     <MESSAGE value="Performance improve: Iteration 1" />
     <MESSAGE value="Performance improve: Iteration 2, Search" />
     <MESSAGE value="Backend is added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Backend is added" />
+    <MESSAGE value="KS Config is added" />
+    <option name="LAST_COMMIT_MESSAGE" value="KS Config is added" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend/src/test/java/com/roly/qakb/BackendApplicationTests.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
