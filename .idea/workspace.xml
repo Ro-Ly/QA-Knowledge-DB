@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="KS Config is added">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/roly/qakb/BackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/roly/qakb/BackendApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/roly/qakb/BackendApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="2" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -41,10 +44,10 @@
     &quot;accountId&quot;: &quot;c277eb4e-d197-4dbb-acb8-419f24ff77a4&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -56,13 +59,18 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "JUnit.BackendApplicationTests.contextLoads.executor": "Debug",
+    "JAR Application.qa-knowledge-backend-0.0.1-SNAPSHOT.jar.executor": "Run",
+    "JUnit.BackendApplicationTests.contextLoads.executor": "Run",
+    "JUnit.BackendApplicationTests.maxSearch.executor": "Run",
+    "JUnit.LiveCodingTest.executor": "Debug",
+    "JUnit.LiveCodingTest.livecodingTest.executor": "Debug",
     "KUBERNETES_SUPPRESS_CONFIG_CLUSTER_SUGGESTION": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -101,8 +109,11 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.roly.qakb" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="test_resources" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.BackendApplicationTests.contextLoads">
+  <component name="RunManager" selected="JUnit.BackendApplicationTests.maxSearch">
     <configuration name="BackendApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="qa-knowledge-backend" />
       <extension name="coverage">
@@ -118,6 +129,57 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="BackendApplicationTests.maxSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qa-knowledge-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roly.qakb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roly.qakb" />
+      <option name="MAIN_CLASS_NAME" value="com.roly.qakb.BackendApplicationTests" />
+      <option name="METHOD_NAME" value="maxSearch" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LiveCodingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qa-knowledge-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roly.qakb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roly.qakb" />
+      <option name="MAIN_CLASS_NAME" value="com.roly.qakb.LiveCodingTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LiveCodingTest.livecodingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qa-knowledge-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roly.qakb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roly.qakb" />
+      <option name="MAIN_CLASS_NAME" value="com.roly.qakb.LiveCodingTest" />
+      <option name="METHOD_NAME" value="livecodingTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="qa-knowledge-backend-0.0.1-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/backend/target/qa-knowledge-backend-0.0.1-SNAPSHOT.jar" />
+      <method v="2" />
     </configuration>
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -137,6 +199,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BackendApplicationTests.maxSearch" />
+        <item itemvalue="JAR Application.qa-knowledge-backend-0.0.1-SNAPSHOT.jar" />
+        <item itemvalue="JUnit.LiveCodingTest.livecodingTest" />
+        <item itemvalue="JUnit.LiveCodingTest" />
         <item itemvalue="JUnit.BackendApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
@@ -165,7 +231,9 @@
       <workItem from="1775914453674" duration="3503000" />
       <workItem from="1775919545957" duration="5187000" />
       <workItem from="1775925130065" duration="16000" />
-      <workItem from="1775925159772" duration="20442000" />
+      <workItem from="1775925159772" duration="20469000" />
+      <workItem from="1776286646760" duration="362000" />
+      <workItem from="1776287023017" duration="20000" />
     </task>
     <task id="LOCAL-00001" summary="Initial main setup">
       <option name="closed" value="true" />
@@ -471,7 +539,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776198273888</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="KS Config is added">
+      <option name="closed" value="true" />
+      <created>1776284945492</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1776284945492</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,19 +592,13 @@
     <MESSAGE value="KS Config is added" />
     <option name="LAST_COMMIT_MESSAGE" value="KS Config is added" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/backend/src/test/java/com/roly/qakb/BackendApplicationTests.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/QA_Knowledge_DB$LiveCodingTest_livecodingTest.ic" NAME="LiveCodingTest.livecodingTest Coverage Results" MODIFIED="1777149303751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.roly.qakb.*</FILTER>
+    </SUITE>
   </component>
 </project>
