@@ -4,25 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="Project cleanup">
-      <change afterPath="$PROJECT_DIR$/e2d.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/BaseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/pages/KnowledgeBasePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/tests/MarkdownTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/tests/QuestionDetailsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/tests/SearchTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/tests/SmokeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/src/resources/test.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/QA-interview-knowledge-base-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QA-interview-knowledge-base-app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/CategoryAccordion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/CategoryAccordion.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/QuestionCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/QuestionCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/SearchBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/SearchBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/TagFilter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/TagFilter.jsx" afterDir="false" />
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="- Playwright framework sub-module is added&#10;- E2E FE tests were added">
+      <change afterPath="$PROJECT_DIR$/e2e/.github/workflows/deploy-pages.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/e2e/.github/workflows/e2e-image.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/e2e/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -573,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778611912778</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="- Playwright framework sub-module is added&#10;- E2E FE tests were added">
+      <option name="closed" value="true" />
+      <created>1779043249190</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1779043249191</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +612,8 @@
     <MESSAGE value="Backend is added" />
     <MESSAGE value="KS Config is added" />
     <MESSAGE value="Project cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Project cleanup" />
+    <MESSAGE value="- Playwright framework sub-module is added&#10;- E2E FE tests were added" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Playwright framework sub-module is added&#10;- E2E FE tests were added" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
