@@ -4,6 +4,7 @@ import { TextField } from '@mui/material';
 const SearchBar = ({ value, onChange }) => {
     return (
         <TextField
+            data-testid="search-field"
             fullWidth
             label="Search questions..."
             variant="outlined"

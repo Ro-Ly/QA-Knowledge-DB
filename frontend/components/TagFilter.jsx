@@ -9,7 +9,7 @@ const TagFilter = ({ tags = [], selectedTag = '', onChange }) => {
     };
 
     return (
-        <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+        <Stack data-testid="tag-filter" direction="row" spacing={1} useFlexGap flexWrap="wrap">
             {tags.map((tag) => {
                 const isSelected = selectedTag === tag;
 

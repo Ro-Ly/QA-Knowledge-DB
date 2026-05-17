@@ -133,7 +133,7 @@ const QuestionCard = ({ question }) => {
     }, [expanded, question.answer, question.category, question.normalizedAnswer]);
 
     return (
-        <Accordion
+        <Accordion data-testid="question"
             expanded={expanded}
             onChange={() => setExpanded(!expanded)}
             sx={{
@@ -154,6 +154,7 @@ const QuestionCard = ({ question }) => {
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography
+                    data-testid="question-title"
                     variant="subtitle1"
                     color="text.primary"
                 >
@@ -161,7 +162,7 @@ const QuestionCard = ({ question }) => {
                 </Typography>
             </AccordionSummary>
 
-            <AccordionDetails>
+            <AccordionDetails data-testid="question-answer">
                 {!!question.tags?.length && (
                     <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ mb: 2 }}>
                         {question.tags.map((tag) => (
@@ -172,6 +173,7 @@ const QuestionCard = ({ question }) => {
 
                 {expanded && (
                     <Box
+                        data-testid="question-answer-text"
                         sx={{
                             color: 'text.secondary',
                             lineHeight: 1.8,
@@ -229,7 +231,9 @@ const QuestionCard = ({ question }) => {
                                     }
 
                                     return (
-                                        <Box sx={{ mb: 2 }}>
+                                        <Box
+                                            data-testid="question-answer-text-code-block"
+                                            sx={{ mb: 2 }}>
                                             <SyntaxHighlighter
                                                 language={detectedLanguage || 'text'}
                                                 style={oneDark}

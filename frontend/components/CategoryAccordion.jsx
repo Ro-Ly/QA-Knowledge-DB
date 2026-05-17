@@ -27,6 +27,7 @@ const CategoryAccordion = ({ category, subcategories }) => {
 
     return (
         <Accordion
+            data-testid="category"
             expanded={expanded}
             onChange={() => setExpanded(!expanded)}
             sx={{
@@ -40,6 +41,7 @@ const CategoryAccordion = ({ category, subcategories }) => {
             }}
         >
             <AccordionSummary
+                data-testid="category-summary"
                 expandIcon={<ExpandMoreIcon />}
                 sx={{
                     minHeight: 66,
@@ -49,6 +51,7 @@ const CategoryAccordion = ({ category, subcategories }) => {
                 }}
             >
                 <Box
+                    data-testid="category-container"
                     sx={{
                         width: '100%',
                         display: 'flex',
@@ -60,6 +63,7 @@ const CategoryAccordion = ({ category, subcategories }) => {
                 >
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
                         <Box
+                            data-testid="category-container-box"
                             sx={{
                                 width: 10,
                                 height: 10,
@@ -74,17 +78,22 @@ const CategoryAccordion = ({ category, subcategories }) => {
                         <Typography variant="h5">{category}</Typography>
                     </Box>
 
-                    <Chip label={`${totalQuestions}`} size="small" />
+                    <Chip
+                        data-testid="chips"
+                        label={`${totalQuestions}`} size="small" />
                 </Box>
             </AccordionSummary>
 
-            <AccordionDetails sx={{ pt: 0.5 }}>
+            <AccordionDetails
+                data-testid="category-accordion-details-root"
+                sx={{ pt: 0.5 }}>
                 {expanded &&
                     subcategoryEntries.map(([subcategory, questions]) => {
                         const isSubExpanded = expandedSub === subcategory;
 
                         return (
                             <Accordion
+                                data-testid="category-accordion-details"
                                 key={subcategory}
                                 expanded={isSubExpanded}
                                 onChange={() =>
@@ -101,6 +110,7 @@ const CategoryAccordion = ({ category, subcategories }) => {
                                 }}
                             >
                                 <AccordionSummary
+                                    data-testid="category-accordion-details-summary"
                                     expandIcon={<ExpandMoreIcon />}
                                     sx={{
                                         minHeight: 58,
@@ -127,6 +137,7 @@ const CategoryAccordion = ({ category, subcategories }) => {
                                         </Typography>
 
                                         <Chip
+                                            data-testid="category-accordion-details-chip"
                                             label={`${questions.length} questions`}
                                             size="small"
                                         />
