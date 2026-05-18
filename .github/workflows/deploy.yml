@@ -91,14 +91,14 @@ jobs:
 
       - name: Pull E2E test image
         run: |
-          docker pull ghcr.io/${{ github.ro-ly }}/qa-knowledge-db-e2e:latest
+          docker pull ghcr.io/ro-ly/qa-knowledge-db-e2e:latest
 
       - name: Run Playwright E2E tests
         run: |
           docker run \
             --network host \
             -e BASE_URL=http://127.0.0.1:4173 \
-            ghcr.io/${{ github.ro-ly }}/qa-knowledge-db-e2e:latest
+            ghcr.io/ro-ly/qa-knowledge-db-e2e:latest
 
   deploy:
     environment:
