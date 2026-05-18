@@ -19,6 +19,7 @@
     <playwright.version>1.48.0</playwright.version>
     <junit.jupiter.version>5.10.2</junit.jupiter.version>
     <assertj.version>3.26.3</assertj.version>
+    <allure.version>2.29.0</allure.version>
 
     <exe.maven.version>3.1.0</exe.maven.version>
     <maven.surefire>3.2.5</maven.surefire>
@@ -29,6 +30,12 @@
       <groupId>com.microsoft.playwright</groupId>
       <artifactId>playwright</artifactId>
       <version>${playwright.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-junit5</artifactId>
+      <version>${allure.version}</version>
     </dependency>
 
     <dependency>
@@ -81,6 +88,9 @@
             <browser>${browser}</browser>
             <!--suppress UnresolvedMavenProperty -->
             <headless>${headless}</headless>
+            <allure.results.directory>
+              target/allure-results
+            </allure.results.directory>
           </systemPropertyVariables>
         </configuration>
       </plugin>

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="- e2e build .yml is moved to the target folder">
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="- e2e tests run">
       <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/e2e-image.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/e2e-image.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/tests/SmokeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/tests/SmokeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -583,7 +584,31 @@
       <option name="project" value="LOCAL" />
       <updated>1779058670245</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="- repo owner hardcode due to char capitalized error">
+      <option name="closed" value="true" />
+      <created>1779129867392</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1779129867392</updated>
+    </task>
+    <task id="LOCAL-00045" summary="- repo owner hardcode due to char capitalized error">
+      <option name="closed" value="true" />
+      <created>1779130046059</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1779130046059</updated>
+    </task>
+    <task id="LOCAL-00046" summary="- e2e tests run">
+      <option name="closed" value="true" />
+      <created>1779136683934</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1779136683934</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -630,7 +655,9 @@
     <MESSAGE value="- Playwright framework sub-module is added&#10;- E2E FE tests were added" />
     <MESSAGE value="- Pipelines for FE is changed&#10;- Pipeline for e2e is added &#10;- Docker registry for e2e container is added" />
     <MESSAGE value="- e2e build .yml is moved to the target folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="- e2e build .yml is moved to the target folder" />
+    <MESSAGE value="- repo owner hardcode due to char capitalized error" />
+    <MESSAGE value="- e2e tests run" />
+    <option name="LAST_COMMIT_MESSAGE" value="- e2e tests run" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

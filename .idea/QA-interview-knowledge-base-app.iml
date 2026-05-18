@@ -25,5 +25,6 @@
     </orderEntry>
     <orderEntry type="library" scope="TEST" name="Maven: com.microsoft.playwright:playwright:1.48.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.27.7" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: io.qameta.allure:allure-java-commons:2.29.0" level="project" />
   </component>
 </module>
