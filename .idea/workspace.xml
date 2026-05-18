@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="- Playwright framework sub-module is added&#10;- E2E FE tests were added">
-      <change afterPath="$PROJECT_DIR$/e2e/.github/workflows/deploy-pages.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/.github/workflows/e2e-image.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/e2e/Dockerfile" afterDir="false" />
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="- e2e build .yml is moved to the target folder">
       <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/e2e-image.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/e2e-image.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,11 +111,11 @@
       <recent name="C:\IdeaProjects\QA-interview-knowledge-base-app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github/workflows" />
       <recent name="$PROJECT_DIR$/frontend/data" />
       <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/backend/src/main/resources/data" />
       <recent name="$PROJECT_DIR$/backend/src/main/resources/data" />
-      <recent name="C:\IdeaProjects\QA-interview-knowledge-base-app\src\data\design\responsive" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.roly.qakb" />
@@ -568,7 +567,23 @@
       <option name="project" value="LOCAL" />
       <updated>1779043249191</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="- Pipelines for FE is changed&#10;- Pipeline for e2e is added &#10;- Docker registry for e2e container is added">
+      <option name="closed" value="true" />
+      <created>1779058406971</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1779058406971</updated>
+    </task>
+    <task id="LOCAL-00043" summary="- e2e build .yml is moved to the target folder">
+      <option name="closed" value="true" />
+      <created>1779058670245</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1779058670245</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,7 +628,9 @@
     <MESSAGE value="KS Config is added" />
     <MESSAGE value="Project cleanup" />
     <MESSAGE value="- Playwright framework sub-module is added&#10;- E2E FE tests were added" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Playwright framework sub-module is added&#10;- E2E FE tests were added" />
+    <MESSAGE value="- Pipelines for FE is changed&#10;- Pipeline for e2e is added &#10;- Docker registry for e2e container is added" />
+    <MESSAGE value="- e2e build .yml is moved to the target folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="- e2e build .yml is moved to the target folder" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
