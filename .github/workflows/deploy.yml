@@ -55,7 +55,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
 
-    if: github.event.inputs.run_e2e == 'true'
+    if: |
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.run_e2e == 'true'
 
     steps:
       - name: Checkout repository
