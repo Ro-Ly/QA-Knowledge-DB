@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="- e2e tests run">
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="- deploy of the allure reports to the webpage is added">
       <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/tests/SmokeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/src/java/com/roly/qaknowledgedb/e2e/tests/SmokeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -608,7 +606,31 @@
       <option name="project" value="LOCAL" />
       <updated>1779136683934</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="- allure reporting is added&#10;- allure is added into the circle CI">
+      <option name="closed" value="true" />
+      <created>1779140104479</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1779140104479</updated>
+    </task>
+    <task id="LOCAL-00048" summary="- Allure reporting is fixed">
+      <option name="closed" value="true" />
+      <created>1779314950554</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1779314950554</updated>
+    </task>
+    <task id="LOCAL-00049" summary="- deploy of the allure reports to the webpage is added">
+      <option name="closed" value="true" />
+      <created>1779317733619</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1779317733619</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,7 +679,10 @@
     <MESSAGE value="- e2e build .yml is moved to the target folder" />
     <MESSAGE value="- repo owner hardcode due to char capitalized error" />
     <MESSAGE value="- e2e tests run" />
-    <option name="LAST_COMMIT_MESSAGE" value="- e2e tests run" />
+    <MESSAGE value="- allure reporting is added&#10;- allure is added into the circle CI" />
+    <MESSAGE value="- Allure reporting is fixed" />
+    <MESSAGE value="- deploy of the allure reports to the webpage is added" />
+    <option name="LAST_COMMIT_MESSAGE" value="- deploy of the allure reports to the webpage is added" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
