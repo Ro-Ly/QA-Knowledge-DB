@@ -108,12 +108,13 @@ jobs:
             -v ${{ github.workspace }}/allure-results:/app/target/allure-results \
             ghcr.io/ro-ly/qa-knowledge-db-e2e:latest
 
+      - name: Install Allure CLI
+        run: |
+          npm install -g allure-commandline --save-dev
+
       - name: Generate Allure report
-        uses: simple-elf/allure-report-action@v1.9
-        if: always()
-        with:
-          allure_results: allure-results
-          allure_report: allure-report
+        run: |
+          allure generate allure-results -o allure-report --clean
 
       - name: Upload Allure report
         uses: actions/upload-artifact@v4
