@@ -70,6 +70,7 @@ jobs:
         run: npm run preview -- --host 0.0.0.0 &
 
       - name: Wait for frontend
+        timeout-minutes: 5
         run: npx wait-on http://127.0.0.1:4173
 
       - name: Login to GHCR
