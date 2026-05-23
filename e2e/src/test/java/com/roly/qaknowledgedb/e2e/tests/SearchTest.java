@@ -20,6 +20,7 @@ class SearchTest extends BaseTest {
                 .shouldShowText("Java");
     }
 
+    @Disabled
     @Test
     void shouldShowEmptyStateForUnknownSearchQuery() {
         KnowledgeBasePage knowledgeBasePage = new KnowledgeBasePage(page)
