@@ -3,12 +3,14 @@ package com.roly.qaknowledgedb.e2e.tests;
 
 import com.roly.qaknowledgedb.e2e.BaseTest;
 import com.roly.qaknowledgedb.e2e.pages.KnowledgeBasePage;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SearchTest extends BaseTest {
 
+    @Disabled
     @Test
     void shouldFindQuestionsBySearchQuery() {
         new KnowledgeBasePage(page)

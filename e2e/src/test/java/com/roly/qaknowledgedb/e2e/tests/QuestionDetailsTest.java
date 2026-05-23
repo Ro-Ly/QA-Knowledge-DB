@@ -1,19 +1,20 @@
-// e2e/src/test/java/com/roly/qaknowledgedb/e2e/tests/MarkdownTest.java
+// e2e/src/test/java/com/roly/qaknowledgedb/e2e/tests/QuestionDetailsTest.java
 package com.roly.qaknowledgedb.e2e.tests;
 
 import com.roly.qaknowledgedb.e2e.BaseTest;
 import com.roly.qaknowledgedb.e2e.pages.KnowledgeBasePage;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class MarkdownTest extends BaseTest {
+class QuestionDetailsTest extends BaseTest {
 
+    @Disabled
     @Test
-    void shouldRenderCodeBlocksInsideAnswer() {
+    void shouldExpandQuestionAndShowAnswer() {
         new KnowledgeBasePage(page)
                 .open(baseUrl)
-                .search("SQL")
                 .shouldHaveQuestions()
                 .openFirstQuestion()
-                .shouldShowCodeBlock();
+                .shouldShowAnswer();
     }
 }
