@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="- headless fix">
+    <list default="true" id="108a6ce3-1dc6-4371-9f6f-b15eeb63039e" name="Changes" comment="- baseURL fix">
       <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,14 +236,6 @@
       <workItem from="1775925159772" duration="20469000" />
       <workItem from="1776286646760" duration="362000" />
       <workItem from="1776287023017" duration="20000" />
-    </task>
-    <task id="LOCAL-00004" summary="Initial main setup">
-      <option name="closed" value="true" />
-      <created>1774454385995</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1774454385995</updated>
     </task>
     <task id="LOCAL-00005" summary="Initial main setup">
       <option name="closed" value="true" />
@@ -631,7 +621,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779571922659</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="- baseURL fix">
+      <option name="closed" value="true" />
+      <created>1779572952667</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1779572952667</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -659,7 +657,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Subcategory is added" />
     <MESSAGE value="Title update" />
     <MESSAGE value="Build fixes" />
     <MESSAGE value="Questions are collapsable now" />
@@ -684,7 +681,8 @@
     <MESSAGE value="- deploy of the allure reports to the webpage is added" />
     <MESSAGE value="- allure upload to Git Pages fix" />
     <MESSAGE value="- headless fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="- headless fix" />
+    <MESSAGE value="- baseURL fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="- baseURL fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

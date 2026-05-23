@@ -26,15 +26,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     outputs:
       run_e2e: ${{ steps.set-output.outputs.run_e2e }}
-
     steps:
       - name: Set workflow outputs
         id: set-output
-        run: |
-          echo "run_e2e=${{ github.event.inputs.run_e2e }}" >> $GITHUB_OUTPUT
+        run: echo "run_e2e=${{ github.event.inputs.run_e2e }}" >> $GITHUB_OUTPUT
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -63,10 +60,7 @@ jobs:
   e2e-tests:
     runs-on: ubuntu-latest
     needs: build
-
-    if: |
-      github.event_name == 'workflow_dispatch' &&
-      github.event.inputs.run_e2e == 'true'
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_e2e == 'true'
 
     steps:
       - name: Checkout repository
@@ -89,8 +83,7 @@ jobs:
 
       - name: Start frontend preview
         working-directory: ./frontend
-        run: |
-          npm run preview -- --host 0.0.0.0 &
+        run: npm run preview -- --host 0.0.0.0 &
 
       - name: Wait for frontend
         run: npx wait-on http://127.0.0.1:4173
@@ -103,38 +96,36 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pull E2E test image
-        run: |
-          docker pull ghcr.io/ro-ly/qa-knowledge-db-e2e:latest
-
-      - name: Create Allure directories
-        run: |
-          mkdir -p allure-results
-          mkdir -p allure-report
+        run: docker pull ghcr.io/ro-ly/qa-knowledge-db-e2e:latest
 
       - name: Run Playwright E2E tests
         run: |
           docker run \
             --network host \
-            -e BASE_URL=http://127.0.0.1:4173 \
             -e HEADLESS=true \
             -v ${{ github.workspace }}/allure-results:/app/target/allure-results \
             ghcr.io/ro-ly/qa-knowledge-db-e2e:latest \
             mvn test -DbaseUrl=http://127.0.0.1:4173
 
-      - name: Install Allure CLI
-        run: |
-          npm install -g allure-commandline --save-dev
+      - name: Setup Allure
+        if: always()
+        uses: softprops/setup-allure@v1
+        with:
+          version: '2.29.0'
 
       - name: Generate Allure report
         if: always()
-        run: |
-          allure generate allure-results -o allure-report --clean
+        run: allure generate allure-results -o allure-report --clean
 
       - name: Copy Allure report into frontend dist
         if: always()
         run: |
-          mkdir -p frontend/dist/allure
-          cp -R allure-report/* frontend/dist/allure/
+          if [ -d "allure-report" ]; then
+            mkdir -p frontend/dist/allure
+            cp -R allure-report/* frontend/dist/allure/
+          else
+            echo "Allure report not found, skipping..."
+          fi
 
       - name: Upload frontend artifact with Allure
         if: always()
@@ -143,45 +134,18 @@ jobs:
           name: frontend-dist-with-allure
           path: frontend/dist
 
-      - name: Upload Allure report artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
-
   deploy:
     runs-on: ubuntu-latest
-
-    needs:
-      - build
-      - e2e-tests
-
-    if: |
-      always() &&
-      needs.build.result == 'success' &&
-      (
-        needs.e2e-tests.result == 'success' ||
-        needs.e2e-tests.result == 'skipped'
-      )
-
+    needs: [ build, e2e-tests ]
+    if: always() && needs.build.result == 'success' && (needs.e2e-tests.result == 'success' || needs.e2e-tests.result == 'skipped')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Download frontend artifact with Allure
-        if: needs.e2e-tests.result == 'success'
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-dist-with-allure
-          path: frontend/dist
-
       - name: Download frontend artifact
-        if: needs.e2e-tests.result == 'skipped'
         uses: actions/download-artifact@v4
         with:
-          name: frontend-dist
+          name: ${{ needs.e2e-tests.result == 'success' && 'frontend-dist-with-allure' || 'frontend-dist' }}
           path: frontend/dist
 
       - name: Upload Pages artifact
