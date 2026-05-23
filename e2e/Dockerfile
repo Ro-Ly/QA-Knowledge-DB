@@ -7,4 +7,4 @@ COPY src ./src
 
 RUN mvn test-compile
 
-CMD ["mvn", "test"]
+CMD ["sh", "-c", "mkdir -p target/allure-results && mvn test"]

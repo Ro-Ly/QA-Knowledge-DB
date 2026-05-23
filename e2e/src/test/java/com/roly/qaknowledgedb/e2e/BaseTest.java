@@ -20,7 +20,7 @@ public class BaseTest {
                 "https://ro-ly.github.io/QA-Knowledge-DB/"
         );
 
-        var headless = false;
+        var headless = true;
         var launchOptions = new BrowserType.LaunchOptions()
                 .setHeadless(headless)
                 .setSlowMo(500);
