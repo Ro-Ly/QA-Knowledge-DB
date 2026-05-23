@@ -107,11 +107,12 @@ jobs:
             ghcr.io/ro-ly/qa-knowledge-db-e2e:latest \
             mvn test -DbaseUrl=http://127.0.0.1:4173
 
-      - name: Setup Allure
+      - name: Setup Allure CLI
         if: always()
-        uses: softprops/setup-allure@v1
-        with:
-          version: '2.29.0'
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.tgz
+          tar -zxvf allure-2.29.0.tgz
+          sudo ln -s $(pwd)/allure-2.29.0/bin/allure /usr/bin/allure
 
       - name: Generate Allure report
         if: always()
