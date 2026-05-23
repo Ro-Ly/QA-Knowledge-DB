@@ -116,8 +116,10 @@ jobs:
           docker run \
             --network host \
             -e BASE_URL=http://127.0.0.1:4173 \
+            -e HEADLESS=true \
             -v ${{ github.workspace }}/allure-results:/app/target/allure-results \
-            ghcr.io/ro-ly/qa-knowledge-db-e2e:latest
+            ghcr.io/ro-ly/qa-knowledge-db-e2e:latest \
+            mvn test -DbaseUrl=http://127.0.0.1:4173
 
       - name: Install Allure CLI
         run: |

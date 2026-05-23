@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/QA-interview-knowledge-base-app.iml" filepath="$PROJECT_DIR$/.idea/QA-interview-knowledge-base-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/e2e/qa-knowledge-db-e2e.iml" filepath="$PROJECT_DIR$/e2e/qa-knowledge-db-e2e.iml" />
     </modules>
   </component>
 </project>
